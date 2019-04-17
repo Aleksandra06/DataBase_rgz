@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBoxKolChel = new System.Windows.Forms.TextBox();
@@ -57,6 +58,9 @@
             this.продуктыBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.блюдоDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.продуктDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.колво5челDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -70,9 +74,6 @@
             this.блюдоTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.БлюдоTableAdapter();
             this.продуктыTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.ПродуктыTableAdapter();
             this.продукты_естьTableAdapter = new DataBase_rgz.productsDataSetTableAdapters.Продукты_естьTableAdapter();
-            this.блюдоDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.продуктDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.колво5челDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -391,6 +392,27 @@
             this.dataGridView4.Size = new System.Drawing.Size(320, 454);
             this.dataGridView4.TabIndex = 13;
             // 
+            // блюдоDataGridViewTextBoxColumn2
+            // 
+            this.блюдоDataGridViewTextBoxColumn2.DataPropertyName = "Блюдо";
+            this.блюдоDataGridViewTextBoxColumn2.HeaderText = "Блюдо";
+            this.блюдоDataGridViewTextBoxColumn2.Name = "блюдоDataGridViewTextBoxColumn2";
+            this.блюдоDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // продуктDataGridViewTextBoxColumn2
+            // 
+            this.продуктDataGridViewTextBoxColumn2.DataPropertyName = "Продукт";
+            this.продуктDataGridViewTextBoxColumn2.HeaderText = "Продукт";
+            this.продуктDataGridViewTextBoxColumn2.Name = "продуктDataGridViewTextBoxColumn2";
+            this.продуктDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // колво5челDataGridViewTextBoxColumn1
+            // 
+            this.колво5челDataGridViewTextBoxColumn1.DataPropertyName = "Кол-во/5чел";
+            this.колво5челDataGridViewTextBoxColumn1.HeaderText = "Кол-во/5чел";
+            this.колво5челDataGridViewTextBoxColumn1.Name = "колво5челDataGridViewTextBoxColumn1";
+            this.колво5челDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
@@ -503,27 +525,6 @@
             // 
             this.продукты_естьTableAdapter.ClearBeforeFill = true;
             // 
-            // блюдоDataGridViewTextBoxColumn2
-            // 
-            this.блюдоDataGridViewTextBoxColumn2.DataPropertyName = "Блюдо";
-            this.блюдоDataGridViewTextBoxColumn2.HeaderText = "Блюдо";
-            this.блюдоDataGridViewTextBoxColumn2.Name = "блюдоDataGridViewTextBoxColumn2";
-            this.блюдоDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // продуктDataGridViewTextBoxColumn2
-            // 
-            this.продуктDataGridViewTextBoxColumn2.DataPropertyName = "Продукт";
-            this.продуктDataGridViewTextBoxColumn2.HeaderText = "Продукт";
-            this.продуктDataGridViewTextBoxColumn2.Name = "продуктDataGridViewTextBoxColumn2";
-            this.продуктDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // колво5челDataGridViewTextBoxColumn1
-            // 
-            this.колво5челDataGridViewTextBoxColumn1.DataPropertyName = "Кол-во/5чел";
-            this.колво5челDataGridViewTextBoxColumn1.HeaderText = "Кол-во/5чел";
-            this.колво5челDataGridViewTextBoxColumn1.Name = "колво5челDataGridViewTextBoxColumn1";
-            this.колво5челDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,6 +535,7 @@
             this.Controls.Add(this.TabControl1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Составитель меню";
             this.Load += new System.EventHandler(this.Form1_Load);

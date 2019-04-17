@@ -10,11 +10,25 @@ using System.Windows.Forms;
 
 namespace DataBase_rgz
 {
+    public struct reciepts
+    {
+        public string rcategory;
+        public string rdish;
+        public string[] rproducts;
+        public int[] rsum;
+    };
+
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
+            string[] rproducts = new string[10];
+            int[] rsum = new int[10];
+
+            //int n = (int)this.блюдоTableAdapter.Sum_dish();
+            //reciepts[] dishs = new reciepts[n];
         }
 
         private void textBoxKolChel_KeyPress(object sender, KeyPressEventArgs e)//ввод цифр
@@ -76,11 +90,8 @@ namespace DataBase_rgz
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            //int n = (int)this.продукты_естьTableAdapter.Number();
-            //for (int i = 0; i < n; i++)
-            //{
-
-            //}
+           
+            
             try
             {
                // this.продуктыTableAdapter.Product_seach(this.recipesDataSet.Продукты, this.productsDataSet.Продукты_есть);
