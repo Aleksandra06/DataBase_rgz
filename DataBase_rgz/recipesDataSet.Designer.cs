@@ -26,7 +26,9 @@ namespace DataBase_rgz {
         
         private БлюдоDataTable tableБлюдо;
         
-        private ПродуктыDataTable tableПродукты;
+        private ПродуктDataTable tableПродукт;
+        
+        private global::System.Data.DataRelation relationрецептПродукт;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -59,8 +61,8 @@ namespace DataBase_rgz {
                 if ((ds.Tables["Блюдо"] != null)) {
                     base.Tables.Add(new БлюдоDataTable(ds.Tables["Блюдо"]));
                 }
-                if ((ds.Tables["Продукты"] != null)) {
-                    base.Tables.Add(new ПродуктыDataTable(ds.Tables["Продукты"]));
+                if ((ds.Tables["Продукт"] != null)) {
+                    base.Tables.Add(new ПродуктDataTable(ds.Tables["Продукт"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -94,9 +96,9 @@ namespace DataBase_rgz {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ПродуктыDataTable Продукты {
+        public ПродуктDataTable Продукт {
             get {
-                return this.tableПродукты;
+                return this.tableПродукт;
             }
         }
         
@@ -170,8 +172,8 @@ namespace DataBase_rgz {
                 if ((ds.Tables["Блюдо"] != null)) {
                     base.Tables.Add(new БлюдоDataTable(ds.Tables["Блюдо"]));
                 }
-                if ((ds.Tables["Продукты"] != null)) {
-                    base.Tables.Add(new ПродуктыDataTable(ds.Tables["Продукты"]));
+                if ((ds.Tables["Продукт"] != null)) {
+                    base.Tables.Add(new ПродуктDataTable(ds.Tables["Продукт"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -212,12 +214,13 @@ namespace DataBase_rgz {
                     this.tableБлюдо.InitVars();
                 }
             }
-            this.tableПродукты = ((ПродуктыDataTable)(base.Tables["Продукты"]));
+            this.tableПродукт = ((ПродуктDataTable)(base.Tables["Продукт"]));
             if ((initTable == true)) {
-                if ((this.tableПродукты != null)) {
-                    this.tableПродукты.InitVars();
+                if ((this.tableПродукт != null)) {
+                    this.tableПродукт.InitVars();
                 }
             }
+            this.relationрецептПродукт = this.Relations["рецептПродукт"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -230,8 +233,12 @@ namespace DataBase_rgz {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableБлюдо = new БлюдоDataTable();
             base.Tables.Add(this.tableБлюдо);
-            this.tableПродукты = new ПродуктыDataTable();
-            base.Tables.Add(this.tableПродукты);
+            this.tableПродукт = new ПродуктDataTable();
+            base.Tables.Add(this.tableПродукт);
+            this.relationрецептПродукт = new global::System.Data.DataRelation("рецептПродукт", new global::System.Data.DataColumn[] {
+                        this.tableБлюдо.КодColumn}, new global::System.Data.DataColumn[] {
+                        this.tableПродукт.Код_рецептаColumn}, false);
+            this.Relations.Add(this.relationрецептПродукт);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -242,7 +249,7 @@ namespace DataBase_rgz {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeПродукты() {
+        private bool ShouldSerializeПродукт() {
             return false;
         }
         
@@ -305,7 +312,7 @@ namespace DataBase_rgz {
         public delegate void БлюдоRowChangeEventHandler(object sender, БлюдоRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void ПродуктыRowChangeEventHandler(object sender, ПродуктыRowChangeEvent e);
+        public delegate void ПродуктRowChangeEventHandler(object sender, ПродуктRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -316,7 +323,7 @@ namespace DataBase_rgz {
             
             private global::System.Data.DataColumn columnКод;
             
-            private global::System.Data.DataColumn columnБлюдо;
+            private global::System.Data.DataColumn columnРецепт;
             
             private global::System.Data.DataColumn columnКатегория;
             
@@ -363,9 +370,9 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn БлюдоColumn {
+            public global::System.Data.DataColumn РецептColumn {
                 get {
-                    return this.columnБлюдо;
+                    return this.columnРецепт;
                 }
             }
             
@@ -414,11 +421,11 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public БлюдоRow AddБлюдоRow(int Код, string Блюдо, string Категория) {
+            public БлюдоRow AddБлюдоRow(string Рецепт, string Категория) {
                 БлюдоRow rowБлюдоRow = ((БлюдоRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Код,
-                        Блюдо,
+                        null,
+                        Рецепт,
                         Категория};
                 rowБлюдоRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowБлюдоRow);
@@ -450,7 +457,7 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnКод = base.Columns["Код"];
-                this.columnБлюдо = base.Columns["Блюдо"];
+                this.columnРецепт = base.Columns["Рецепт"];
                 this.columnКатегория = base.Columns["Категория"];
             }
             
@@ -459,15 +466,18 @@ namespace DataBase_rgz {
             private void InitClass() {
                 this.columnКод = new global::System.Data.DataColumn("Код", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnКод);
-                this.columnБлюдо = new global::System.Data.DataColumn("Блюдо", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnБлюдо);
+                this.columnРецепт = new global::System.Data.DataColumn("Рецепт", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnРецепт);
                 this.columnКатегория = new global::System.Data.DataColumn("Категория", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnКатегория);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnКод}, true));
+                this.columnКод.AutoIncrement = true;
+                this.columnКод.AutoIncrementSeed = -1;
+                this.columnКод.AutoIncrementStep = -1;
                 this.columnКод.AllowDBNull = false;
                 this.columnКод.Unique = true;
-                this.columnБлюдо.MaxLength = 255;
+                this.columnРецепт.MaxLength = 255;
                 this.columnКатегория.MaxLength = 255;
             }
             
@@ -600,22 +610,20 @@ namespace DataBase_rgz {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ПродуктыDataTable : global::System.Data.TypedTableBase<ПродуктыRow> {
+        public partial class ПродуктDataTable : global::System.Data.TypedTableBase<ПродуктRow> {
             
             private global::System.Data.DataColumn columnКод;
             
             private global::System.Data.DataColumn columnПродукт;
             
-            private global::System.Data.DataColumn _columnКол_во_5чел;
+            private global::System.Data.DataColumn _columnКоличество_5чел;
             
-            private global::System.Data.DataColumn columnБлюдо;
-            
-            private global::System.Data.DataColumn columnКод_категории;
+            private global::System.Data.DataColumn columnКод_рецепта;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыDataTable() {
-                this.TableName = "Продукты";
+            public ПродуктDataTable() {
+                this.TableName = "Продукт";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -623,7 +631,7 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ПродуктыDataTable(global::System.Data.DataTable table) {
+            internal ПродуктDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -640,7 +648,7 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected ПродуктыDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ПродуктDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -663,25 +671,17 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn _Кол_во_5челColumn {
+            public global::System.Data.DataColumn _Количество_5челColumn {
                 get {
-                    return this._columnКол_во_5чел;
+                    return this._columnКоличество_5чел;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn БлюдоColumn {
+            public global::System.Data.DataColumn Код_рецептаColumn {
                 get {
-                    return this.columnБлюдо;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Код_категорииColumn {
-                get {
-                    return this.columnКод_категории;
+                    return this.columnКод_рецепта;
                 }
             }
             
@@ -696,56 +696,58 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыRow this[int index] {
+            public ПродуктRow this[int index] {
                 get {
-                    return ((ПродуктыRow)(this.Rows[index]));
+                    return ((ПродуктRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктыRowChangeEventHandler ПродуктыRowChanging;
+            public event ПродуктRowChangeEventHandler ПродуктRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктыRowChangeEventHandler ПродуктыRowChanged;
+            public event ПродуктRowChangeEventHandler ПродуктRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктыRowChangeEventHandler ПродуктыRowDeleting;
+            public event ПродуктRowChangeEventHandler ПродуктRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктыRowChangeEventHandler ПродуктыRowDeleted;
+            public event ПродуктRowChangeEventHandler ПродуктRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddПродуктыRow(ПродуктыRow row) {
+            public void AddПродуктRow(ПродуктRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыRow AddПродуктыRow(int Код, string Продукт, int _Кол_во_5чел, string Блюдо, int Код_категории) {
-                ПродуктыRow rowПродуктыRow = ((ПродуктыRow)(this.NewRow()));
+            public ПродуктRow AddПродуктRow(string Продукт, string _Количество_5чел, БлюдоRow parentБлюдоRowByрецептПродукт) {
+                ПродуктRow rowПродуктRow = ((ПродуктRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Код,
+                        null,
                         Продукт,
-                        _Кол_во_5чел,
-                        Блюдо,
-                        Код_категории};
-                rowПродуктыRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowПродуктыRow);
-                return rowПродуктыRow;
+                        _Количество_5чел,
+                        null};
+                if ((parentБлюдоRowByрецептПродукт != null)) {
+                    columnValuesArray[3] = parentБлюдоRowByрецептПродукт[0];
+                }
+                rowПродуктRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowПродуктRow);
+                return rowПродуктRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыRow FindByКод(int Код) {
-                return ((ПродуктыRow)(this.Rows.Find(new object[] {
+            public ПродуктRow FindByКод(int Код) {
+                return ((ПродуктRow)(this.Rows.Find(new object[] {
                             Код})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ПродуктыDataTable cln = ((ПродуктыDataTable)(base.Clone()));
+                ПродуктDataTable cln = ((ПродуктDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -753,7 +755,7 @@ namespace DataBase_rgz {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ПродуктыDataTable();
+                return new ПродуктDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -761,9 +763,8 @@ namespace DataBase_rgz {
             internal void InitVars() {
                 this.columnКод = base.Columns["Код"];
                 this.columnПродукт = base.Columns["Продукт"];
-                this._columnКол_во_5чел = base.Columns["Кол-во/5чел"];
-                this.columnБлюдо = base.Columns["Блюдо"];
-                this.columnКод_категории = base.Columns["Код категории"];
+                this._columnКоличество_5чел = base.Columns["Количество/5чел"];
+                this.columnКод_рецепта = base.Columns["Код рецепта"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -773,46 +774,47 @@ namespace DataBase_rgz {
                 base.Columns.Add(this.columnКод);
                 this.columnПродукт = new global::System.Data.DataColumn("Продукт", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnПродукт);
-                this._columnКол_во_5чел = new global::System.Data.DataColumn("Кол-во/5чел", typeof(int), null, global::System.Data.MappingType.Element);
-                this._columnКол_во_5чел.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnКол_во_5чел");
-                this._columnКол_во_5чел.ExtendedProperties.Add("Generator_UserColumnName", "Кол-во/5чел");
-                base.Columns.Add(this._columnКол_во_5чел);
-                this.columnБлюдо = new global::System.Data.DataColumn("Блюдо", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnБлюдо);
-                this.columnКод_категории = new global::System.Data.DataColumn("Код категории", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnКод_категории);
+                this._columnКоличество_5чел = new global::System.Data.DataColumn("Количество/5чел", typeof(string), null, global::System.Data.MappingType.Element);
+                this._columnКоличество_5чел.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnКоличество_5чел");
+                this._columnКоличество_5чел.ExtendedProperties.Add("Generator_UserColumnName", "Количество/5чел");
+                base.Columns.Add(this._columnКоличество_5чел);
+                this.columnКод_рецепта = new global::System.Data.DataColumn("Код рецепта", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnКод_рецепта);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnКод}, true));
+                this.columnКод.AutoIncrement = true;
+                this.columnКод.AutoIncrementSeed = -1;
+                this.columnКод.AutoIncrementStep = -1;
                 this.columnКод.AllowDBNull = false;
                 this.columnКод.Unique = true;
                 this.columnПродукт.MaxLength = 255;
-                this.columnБлюдо.MaxLength = 255;
+                this._columnКоличество_5чел.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыRow NewПродуктыRow() {
-                return ((ПродуктыRow)(this.NewRow()));
+            public ПродуктRow NewПродуктRow() {
+                return ((ПродуктRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ПродуктыRow(builder);
+                return new ПродуктRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ПродуктыRow);
+                return typeof(ПродуктRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ПродуктыRowChanged != null)) {
-                    this.ПродуктыRowChanged(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
+                if ((this.ПродуктRowChanged != null)) {
+                    this.ПродуктRowChanged(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
                 }
             }
             
@@ -820,8 +822,8 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ПродуктыRowChanging != null)) {
-                    this.ПродуктыRowChanging(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
+                if ((this.ПродуктRowChanging != null)) {
+                    this.ПродуктRowChanging(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
                 }
             }
             
@@ -829,8 +831,8 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ПродуктыRowDeleted != null)) {
-                    this.ПродуктыRowDeleted(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
+                if ((this.ПродуктRowDeleted != null)) {
+                    this.ПродуктRowDeleted(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
                 }
             }
             
@@ -838,14 +840,14 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ПродуктыRowDeleting != null)) {
-                    this.ПродуктыRowDeleting(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
+                if ((this.ПродуктRowDeleting != null)) {
+                    this.ПродуктRowDeleting(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveПродуктыRow(ПродуктыRow row) {
+            public void RemoveПродуктRow(ПродуктRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -872,7 +874,7 @@ namespace DataBase_rgz {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ПродуктыDataTable";
+                attribute2.FixedValue = "ПродуктDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -940,17 +942,17 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Блюдо {
+            public string Рецепт {
                 get {
                     try {
-                        return ((string)(this[this.tableБлюдо.БлюдоColumn]));
+                        return ((string)(this[this.tableБлюдо.РецептColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Блюдо\' в таблице \'Блюдо\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Рецепт\' в таблице \'Блюдо\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableБлюдо.БлюдоColumn] = value;
+                    this[this.tableБлюдо.РецептColumn] = value;
                 }
             }
             
@@ -972,14 +974,14 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsБлюдоNull() {
-                return this.IsNull(this.tableБлюдо.БлюдоColumn);
+            public bool IsРецептNull() {
+                return this.IsNull(this.tableБлюдо.РецептColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetБлюдоNull() {
-                this[this.tableБлюдо.БлюдоColumn] = global::System.Convert.DBNull;
+            public void SetРецептNull() {
+                this[this.tableБлюдо.РецептColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -993,30 +995,41 @@ namespace DataBase_rgz {
             public void SetКатегорияNull() {
                 this[this.tableБлюдо.КатегорияColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ПродуктRow[] GetПродуктRows() {
+                if ((this.Table.ChildRelations["рецептПродукт"] == null)) {
+                    return new ПродуктRow[0];
+                }
+                else {
+                    return ((ПродуктRow[])(base.GetChildRows(this.Table.ChildRelations["рецептПродукт"])));
+                }
+            }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ПродуктыRow : global::System.Data.DataRow {
+        public partial class ПродуктRow : global::System.Data.DataRow {
             
-            private ПродуктыDataTable tableПродукты;
+            private ПродуктDataTable tableПродукт;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ПродуктыRow(global::System.Data.DataRowBuilder rb) : 
+            internal ПродуктRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableПродукты = ((ПродуктыDataTable)(this.Table));
+                this.tableПродукт = ((ПродуктDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Код {
                 get {
-                    return ((int)(this[this.tableПродукты.КодColumn]));
+                    return ((int)(this[this.tableПродукт.КодColumn]));
                 }
                 set {
-                    this[this.tableПродукты.КодColumn] = value;
+                    this[this.tableПродукт.КодColumn] = value;
                 }
             }
             
@@ -1025,111 +1038,94 @@ namespace DataBase_rgz {
             public string Продукт {
                 get {
                     try {
-                        return ((string)(this[this.tableПродукты.ПродуктColumn]));
+                        return ((string)(this[this.tableПродукт.ПродуктColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Продукт\' в таблице \'Продукты\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Продукт\' в таблице \'Продукт\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableПродукты.ПродуктColumn] = value;
+                    this[this.tableПродукт.ПродуктColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int _Кол_во_5чел {
+            public string _Количество_5чел {
                 get {
                     try {
-                        return ((int)(this[this.tableПродукты._Кол_во_5челColumn]));
+                        return ((string)(this[this.tableПродукт._Количество_5челColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Кол-во/5чел\' в таблице \'Продукты\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Количество/5чел\' в таблице \'Продукт\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableПродукты._Кол_во_5челColumn] = value;
+                    this[this.tableПродукт._Количество_5челColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Блюдо {
+            public int Код_рецепта {
                 get {
                     try {
-                        return ((string)(this[this.tableПродукты.БлюдоColumn]));
+                        return ((int)(this[this.tableПродукт.Код_рецептаColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Блюдо\' в таблице \'Продукты\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Код рецепта\' в таблице \'Продукт\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableПродукты.БлюдоColumn] = value;
+                    this[this.tableПродукт.Код_рецептаColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Код_категории {
+            public БлюдоRow БлюдоRow {
                 get {
-                    try {
-                        return ((int)(this[this.tableПродукты.Код_категорииColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Код категории\' в таблице \'Продукты\' равно DBNull.", e);
-                    }
+                    return ((БлюдоRow)(this.GetParentRow(this.Table.ParentRelations["рецептПродукт"])));
                 }
                 set {
-                    this[this.tableПродукты.Код_категорииColumn] = value;
+                    this.SetParentRow(value, this.Table.ParentRelations["рецептПродукт"]);
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsПродуктNull() {
-                return this.IsNull(this.tableПродукты.ПродуктColumn);
+                return this.IsNull(this.tableПродукт.ПродуктColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetПродуктNull() {
-                this[this.tableПродукты.ПродуктColumn] = global::System.Convert.DBNull;
+                this[this.tableПродукт.ПродуктColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Is_Кол_во_5челNull() {
-                return this.IsNull(this.tableПродукты._Кол_во_5челColumn);
+            public bool Is_Количество_5челNull() {
+                return this.IsNull(this.tableПродукт._Количество_5челColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Set_Кол_во_5челNull() {
-                this[this.tableПродукты._Кол_во_5челColumn] = global::System.Convert.DBNull;
+            public void Set_Количество_5челNull() {
+                this[this.tableПродукт._Количество_5челColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsБлюдоNull() {
-                return this.IsNull(this.tableПродукты.БлюдоColumn);
+            public bool IsКод_рецептаNull() {
+                return this.IsNull(this.tableПродукт.Код_рецептаColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetБлюдоNull() {
-                this[this.tableПродукты.БлюдоColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsКод_категорииNull() {
-                return this.IsNull(this.tableПродукты.Код_категорииColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetКод_категорииNull() {
-                this[this.tableПродукты.Код_категорииColumn] = global::System.Convert.DBNull;
+            public void SetКод_рецептаNull() {
+                this[this.tableПродукт.Код_рецептаColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1171,22 +1167,22 @@ namespace DataBase_rgz {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class ПродуктыRowChangeEvent : global::System.EventArgs {
+        public class ПродуктRowChangeEvent : global::System.EventArgs {
             
-            private ПродуктыRow eventRow;
+            private ПродуктRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыRowChangeEvent(ПродуктыRow row, global::System.Data.DataRowAction action) {
+            public ПродуктRowChangeEvent(ПродуктRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктыRow Row {
+            public ПродуктRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1327,38 +1323,36 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Блюдо";
             tableMapping.ColumnMappings.Add("Код", "Код");
-            tableMapping.ColumnMappings.Add("Блюдо", "Блюдо");
+            tableMapping.ColumnMappings.Add("Рецепт", "Рецепт");
             tableMapping.ColumnMappings.Add("Категория", "Категория");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Блюдо` WHERE ((`Код` = ?) AND ((? = 1 AND `Блюдо` IS NULL) OR (`Блюд" +
-                "о` = ?)) AND ((? = 1 AND `Категория` IS NULL) OR (`Категория` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Блюдо` WHERE ((`Код` = ?) AND ((? = 1 AND `Рецепт` IS NULL) OR (`Рец" +
+                "епт` = ?)) AND ((? = 1 AND `Категория` IS NULL) OR (`Категория` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Блюдо", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Рецепт", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Рецепт", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Рецепт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Рецепт", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Категория", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Категория", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Категория", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Категория", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Блюдо` (`Код`, `Блюдо`, `Категория`) VALUES (?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `Блюдо` (`Рецепт`, `Категория`) VALUES (?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Рецепт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Рецепт", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Категория", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Категория", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `Блюдо` SET `Код` = ?, `Блюдо` = ?, `Категория` = ? WHERE ((`Код` = ?) AND" +
-                " ((? = 1 AND `Блюдо` IS NULL) OR (`Блюдо` = ?)) AND ((? = 1 AND `Категория` IS N" +
-                "ULL) OR (`Категория` = ?)))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `Блюдо` SET `Рецепт` = ?, `Категория` = ? WHERE ((`Код` = ?) AND ((? = 1 A" +
+                "ND `Рецепт` IS NULL) OR (`Рецепт` = ?)) AND ((? = 1 AND `Категория` IS NULL) OR " +
+                "(`Категория` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Рецепт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Рецепт", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Категория", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Категория", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Блюдо", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Рецепт", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Рецепт", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Рецепт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Рецепт", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Категория", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Категория", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Категория", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Категория", global::System.Data.DataRowVersion.Original, false, null));
         }
@@ -1373,21 +1367,28 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[3];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[4];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Код, Блюдо, Категория FROM Блюдо";
+            this._commandCollection[0].CommandText = "SELECT Код, Рецепт, Категория FROM Блюдо";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Код, Блюдо, Категория \r\nFROM Блюдо\r\nWHERE Категория LIKE \'%\' + @str + \'%\'";
+            this._commandCollection[1].CommandText = "SELECT Код, Рецепт, Категория\r\nFROM Блюдо\r\nWHERE Категория LIKE \'%\' + @str + \'%\'";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("@str", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), null, global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Код, Блюдо, Категория \r\nFROM Блюдо\r\nWHERE Блюдо LIKE\'%\' +@str + \'%\'";
+            this._commandCollection[2].CommandText = "SELECT Код, Рецепт, Категория \r\nFROM Блюдо\r\nWHERE Рецепт LIKE \'%\' + @str + \'%\'";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("@str", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), null, global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT    DISTINCT     Блюдо.Код, Блюдо.Рецепт, Блюдо.Категория\r\nFROM            " +
+                "(Блюдо INNER JOIN\r\n                         Продукт ON Блюдо.Код = Продукт.[Код " +
+                "рецепта])\r\nWHERE        Продукт LIKE \'%\' + @str + \'%\'\r\n";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("@str", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), null, global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1418,44 +1419,8 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int Category_seach(recipesDataSet.БлюдоDataTable dataTable, string @str) {
+        public virtual int seach_category(recipesDataSet.БлюдоDataTable dataTable, string @str) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((@str == null)) {
-                throw new global::System.ArgumentNullException("@str");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual recipesDataSet.БлюдоDataTable GetDataBy1(string @str) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((@str == null)) {
-                throw new global::System.ArgumentNullException("@str");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
-            }
-            recipesDataSet.БлюдоDataTable dataTable = new recipesDataSet.БлюдоDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int Dish_search(recipesDataSet.БлюдоDataTable dataTable, string @str) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((@str == null)) {
                 throw new global::System.ArgumentNullException("@str");
             }
@@ -1474,7 +1439,79 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual recipesDataSet.БлюдоDataTable GetDataBy(string @str) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((@str == null)) {
+                throw new global::System.ArgumentNullException("@str");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
+            }
+            recipesDataSet.БлюдоDataTable dataTable = new recipesDataSet.БлюдоDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int search_dish(recipesDataSet.БлюдоDataTable dataTable, string @str) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((@str == null)) {
+                throw new global::System.ArgumentNullException("@str");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual recipesDataSet.БлюдоDataTable GetDataBy1(string @str) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((@str == null)) {
+                throw new global::System.ArgumentNullException("@str");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
+            }
+            recipesDataSet.БлюдоDataTable dataTable = new recipesDataSet.БлюдоDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int search_product(recipesDataSet.БлюдоDataTable dataTable, string @str) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((@str == null)) {
+                throw new global::System.ArgumentNullException("@str");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual recipesDataSet.БлюдоDataTable GetDataBy2(string @str) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((@str == null)) {
                 throw new global::System.ArgumentNullException("@str");
             }
@@ -1519,20 +1556,15 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(global::System.Nullable<int> Original_Код, string Original_Блюдо, string Original_Категория) {
-            if ((Original_Код.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Код.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Блюдо == null)) {
+        public virtual int Delete(int Original_Код, string Original_Рецепт, string Original_Категория) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Код));
+            if ((Original_Рецепт == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Блюдо));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Рецепт));
             }
             if ((Original_Категория == null)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
@@ -1562,24 +1594,18 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> Код, string Блюдо, string Категория) {
-            if ((Код.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Код.Value));
-            }
-            else {
+        public virtual int Insert(string Рецепт, string Категория) {
+            if ((Рецепт == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((Блюдо == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Рецепт));
+            }
+            if ((Категория == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Блюдо));
-            }
-            if ((Категория == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Категория));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Категория));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1601,46 +1627,35 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> Код, string Блюдо, string Категория, global::System.Nullable<int> Original_Код, string Original_Блюдо, string Original_Категория) {
-            if ((Код.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Код.Value));
-            }
-            else {
+        public virtual int Update(string Рецепт, string Категория, int Original_Код, string Original_Рецепт, string Original_Категория) {
+            if ((Рецепт == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((Блюдо == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Рецепт));
+            }
+            if ((Категория == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Блюдо));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Категория));
             }
-            if ((Категория == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Категория));
-            }
-            if ((Original_Код.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Код.Value));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Код));
+            if ((Original_Рецепт == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Блюдо == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Блюдо));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Рецепт));
             }
             if ((Original_Категория == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Категория));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Категория));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1657,14 +1672,6 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 }
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Блюдо, string Категория, global::System.Nullable<int> Original_Код, string Original_Блюдо, string Original_Категория) {
-            return this.Update(Original_Код, Блюдо, Категория, Original_Код, Original_Блюдо, Original_Категория);
-        }
     }
     
     /// <summary>
@@ -1676,7 +1683,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class ПродуктыTableAdapter : global::System.ComponentModel.Component {
+    public partial class ПродуктTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OleDb.OleDbDataAdapter _adapter;
         
@@ -1690,7 +1697,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public ПродуктыTableAdapter() {
+        public ПродуктTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1787,54 +1794,47 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Продукты";
+            tableMapping.DataSetTable = "Продукт";
             tableMapping.ColumnMappings.Add("Код", "Код");
             tableMapping.ColumnMappings.Add("Продукт", "Продукт");
-            tableMapping.ColumnMappings.Add("Кол-во/5чел", "Кол-во/5чел");
-            tableMapping.ColumnMappings.Add("Блюдо", "Блюдо");
-            tableMapping.ColumnMappings.Add("Код категории", "Код категории");
+            tableMapping.ColumnMappings.Add("Количество/5чел", "Количество/5чел");
+            tableMapping.ColumnMappings.Add("Код рецепта", "Код рецепта");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Продукты` WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`Продукт` = ?)) AND ((? = 1 AND `Кол-во/5чел` IS NULL) OR (`Кол-во/5чел` = ?)) AND ((? = 1 AND `Блюдо` IS NULL) OR (`Блюдо` = ?)) AND ((? = 1 AND `Код категории` IS NULL) OR (`Код категории` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Продукт` WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`" +
+                "Продукт` = ?)) AND ((? = 1 AND `Количество/5чел` IS NULL) OR (`Количество/5чел` " +
+                "= ?)) AND ((? = 1 AND `Код рецепта` IS NULL) OR (`Код рецепта` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Продукт", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Продукт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Кол-во/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Кол-во/5чел", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Кол-во/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Кол-во/5чел", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Блюдо", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Код_категории", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код категории", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код_категории", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код категории", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Количество/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Количество/5чел", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Продукты` (`Код`, `Продукт`, `Кол-во/5чел`, `Блюдо`, `Код категории`" +
-                ") VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `Продукт` (`Продукт`, `Количество/5чел`, `Код рецепта`) VALUES (?, ?," +
+                " ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Продукт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Кол-во/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Кол-во/5чел", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код_категории", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код категории", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Количество/5чел", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Продукты` SET `Код` = ?, `Продукт` = ?, `Кол-во/5чел` = ?, `Блюдо` = ?, `Код категории` = ? WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`Продукт` = ?)) AND ((? = 1 AND `Кол-во/5чел` IS NULL) OR (`Кол-во/5чел` = ?)) AND ((? = 1 AND `Блюдо` IS NULL) OR (`Блюдо` = ?)) AND ((? = 1 AND `Код категории` IS NULL) OR (`Код категории` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Продукт` SET `Продукт` = ?, `Количество/5чел` = ?, `Код рецепта` = ? WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`Продукт` = ?)) AND ((? = 1 AND `Количество/5чел` IS NULL) OR (`Количество/5чел` = ?)) AND ((? = 1 AND `Код рецепта` IS NULL) OR (`Код рецепта` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Продукт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Кол-во/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Кол-во/5чел", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код_категории", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код категории", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Количество/5чел", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Продукт", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Продукт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Кол-во/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Кол-во/5чел", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Кол-во/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Кол-во/5чел", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Блюдо", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Блюдо", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Блюдо", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Код_категории", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код категории", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код_категории", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код категории", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Количество/5чел", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Количество/5чел", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1847,24 +1847,18 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[2];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Код, Продукт, [Кол-во/5чел], Блюдо, [Код категории] FROM Продукты";
+            this._commandCollection[0].CommandText = "SELECT Код, Продукт, [Количество/5чел], [Код рецепта] FROM Продукт";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Код, Продукт, [Кол-во/5чел], Блюдо, [Код категории] \r\nFROM Продукты\r\nWHERE" +
-                " Продукт LIKE @str + \'%\'";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("@str", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), null, global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(recipesDataSet.ПродуктыDataTable dataTable) {
+        public virtual int Fill(recipesDataSet.ПродуктDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1877,9 +1871,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual recipesDataSet.ПродуктыDataTable GetData() {
+        public virtual recipesDataSet.ПродуктDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            recipesDataSet.ПродуктыDataTable dataTable = new recipesDataSet.ПродуктыDataTable();
+            recipesDataSet.ПродуктDataTable dataTable = new recipesDataSet.ПродуктDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1887,43 +1881,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int Product_seach(recipesDataSet.ПродуктыDataTable dataTable, string @str) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((@str == null)) {
-                throw new global::System.ArgumentNullException("@str");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual recipesDataSet.ПродуктыDataTable GetDataBy(string @str) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((@str == null)) {
-                throw new global::System.ArgumentNullException("@str");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(@str));
-            }
-            recipesDataSet.ПродуктыDataTable dataTable = new recipesDataSet.ПродуктыDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(recipesDataSet.ПродуктыDataTable dataTable) {
+        public virtual int Update(recipesDataSet.ПродуктDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -1931,7 +1889,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(recipesDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Продукты");
+            return this.Adapter.Update(dataSet, "Продукт");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1953,13 +1911,8 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(global::System.Nullable<int> Original_Код, string Original_Продукт, global::System.Nullable<int> _Original_Кол_во_5чел, string Original_Блюдо, global::System.Nullable<int> Original_Код_категории) {
-            if ((Original_Код.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Код.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
+        public virtual int Delete(int Original_Код, string Original_Продукт, string _Original_Количество_5чел, global::System.Nullable<int> Original_Код_рецепта) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Код));
             if ((Original_Продукт == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -1968,29 +1921,21 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Продукт));
             }
-            if ((_Original_Кол_во_5чел.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(_Original_Кол_во_5чел.Value));
-            }
-            else {
+            if ((_Original_Количество_5чел == null)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_Блюдо == null)) {
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(_Original_Количество_5чел));
+            }
+            if ((Original_Код_рецепта.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Код_рецепта.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Блюдо));
-            }
-            if ((Original_Код_категории.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_Код_категории.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2012,36 +1957,24 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> Код, string Продукт, global::System.Nullable<int> _Кол_во_5чел, string Блюдо, global::System.Nullable<int> Код_категории) {
-            if ((Код.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Код.Value));
-            }
-            else {
+        public virtual int Insert(string Продукт, string _Количество_5чел, global::System.Nullable<int> Код_рецепта) {
+            if ((Продукт == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((Продукт == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Продукт));
+            }
+            if ((_Количество_5чел == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Продукт));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(_Количество_5чел));
             }
-            if ((_Кол_во_5чел.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(_Кол_во_5чел.Value));
+            if ((Код_рецепта.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Код_рецепта.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Блюдо == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Блюдо));
-            }
-            if ((Код_категории.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Код_категории.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2063,74 +1996,49 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> Код, string Продукт, global::System.Nullable<int> _Кол_во_5чел, string Блюдо, global::System.Nullable<int> Код_категории, global::System.Nullable<int> Original_Код, string Original_Продукт, global::System.Nullable<int> _Original_Кол_во_5чел, string Original_Блюдо, global::System.Nullable<int> Original_Код_категории) {
-            if ((Код.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Код.Value));
-            }
-            else {
+        public virtual int Update(string Продукт, string _Количество_5чел, global::System.Nullable<int> Код_рецепта, int Original_Код, string Original_Продукт, string _Original_Количество_5чел, global::System.Nullable<int> Original_Код_рецепта) {
+            if ((Продукт == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((Продукт == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Продукт));
+            }
+            if ((_Количество_5чел == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Продукт));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(_Количество_5чел));
             }
-            if ((_Кол_во_5чел.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(_Кол_во_5чел.Value));
+            if ((Код_рецепта.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Код_рецепта.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Блюдо == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Блюдо));
-            }
-            if ((Код_категории.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Код_категории.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Код.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Код.Value));
-            }
-            else {
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Код));
+            if ((Original_Продукт == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((Original_Продукт == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Продукт));
+            }
+            if ((_Original_Количество_5чел == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Продукт));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(_Original_Количество_5чел));
             }
-            if ((_Original_Кол_во_5чел.HasValue == true)) {
+            if ((Original_Код_рецепта.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(_Original_Кол_во_5чел.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_Код_рецепта.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Блюдо == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Блюдо));
-            }
-            if ((Original_Код_категории.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Код_категории.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2146,14 +2054,6 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Продукт, global::System.Nullable<int> _Кол_во_5чел, string Блюдо, global::System.Nullable<int> Код_категории, global::System.Nullable<int> Original_Код, string Original_Продукт, global::System.Nullable<int> _Original_Кол_во_5чел, string Original_Блюдо, global::System.Nullable<int> Original_Код_категории) {
-            return this.Update(Original_Код, Продукт, _Кол_во_5чел, Блюдо, Код_категории, Original_Код, Original_Продукт, _Original_Кол_во_5чел, Original_Блюдо, Original_Код_категории);
         }
     }
     
@@ -2171,7 +2071,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         
         private БлюдоTableAdapter _блюдоTableAdapter;
         
-        private ПродуктыTableAdapter _продуктыTableAdapter;
+        private ПродуктTableAdapter _продуктTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -2207,12 +2107,12 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public ПродуктыTableAdapter ПродуктыTableAdapter {
+        public ПродуктTableAdapter ПродуктTableAdapter {
             get {
-                return this._продуктыTableAdapter;
+                return this._продуктTableAdapter;
             }
             set {
-                this._продуктыTableAdapter = value;
+                this._продуктTableAdapter = value;
             }
         }
         
@@ -2239,9 +2139,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                             && (this._блюдоTableAdapter.Connection != null))) {
                     return this._блюдоTableAdapter.Connection;
                 }
-                if (((this._продуктыTableAdapter != null) 
-                            && (this._продуктыTableAdapter.Connection != null))) {
-                    return this._продуктыTableAdapter.Connection;
+                if (((this._продуктTableAdapter != null) 
+                            && (this._продуктTableAdapter.Connection != null))) {
+                    return this._продуктTableAdapter.Connection;
                 }
                 return null;
             }
@@ -2259,7 +2159,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 if ((this._блюдоTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._продуктыTableAdapter != null)) {
+                if ((this._продуктTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -2282,12 +2182,12 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._продуктыTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Продукты.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._продуктTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Продукт.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._продуктыTableAdapter.Update(updatedRows));
+                    result = (result + this._продуктTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -2309,11 +2209,11 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._продуктыTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Продукты.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._продуктTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Продукт.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._продуктыTableAdapter.Update(addedRows));
+                    result = (result + this._продуктTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -2327,11 +2227,11 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(recipesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._продуктыTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Продукты.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._продуктTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Продукт.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._продуктыTableAdapter.Update(deletedRows));
+                    result = (result + this._продуктTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -2387,8 +2287,8 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
-            if (((this._продуктыTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._продуктыTableAdapter.Connection) == false))) {
+            if (((this._продуктTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._продуктTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -2433,13 +2333,13 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._блюдоTableAdapter.Adapter);
                     }
                 }
-                if ((this._продуктыTableAdapter != null)) {
-                    revertConnections.Add(this._продуктыTableAdapter, this._продуктыTableAdapter.Connection);
-                    this._продуктыTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
-                    this._продуктыTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
-                    if (this._продуктыTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._продуктыTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._продуктыTableAdapter.Adapter);
+                if ((this._продуктTableAdapter != null)) {
+                    revertConnections.Add(this._продуктTableAdapter, this._продуктTableAdapter.Connection);
+                    this._продуктTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
+                    this._продуктTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
+                    if (this._продуктTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._продуктTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._продуктTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -2504,9 +2404,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     this._блюдоTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._блюдоTableAdapter]));
                     this._блюдоTableAdapter.Transaction = null;
                 }
-                if ((this._продуктыTableAdapter != null)) {
-                    this._продуктыTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._продуктыTableAdapter]));
-                    this._продуктыTableAdapter.Transaction = null;
+                if ((this._продуктTableAdapter != null)) {
+                    this._продуктTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._продуктTableAdapter]));
+                    this._продуктTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
