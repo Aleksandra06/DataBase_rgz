@@ -56,7 +56,7 @@ namespace DataBase_rgz
         private void LoadData()
         {
             Form1_Load();
-            int n = (int)this.блюдоTableAdapter.sum_recipes();
+            int n = (int)this.блюдоTableAdapter.sum_dish();
             int m = (int)this.продуктыTableAdapter.sum_product();
             int tmp;
             dish = new sreciepts[n];
@@ -77,13 +77,13 @@ namespace DataBase_rgz
                     if (((int)recipesDataSet.Продукты[j][3] == (int)recipesDataSet.Блюдо[i][0]) && (tmp< dish[i].snum))
                     {
                         dish[i].sproduct[tmp].spruduct = (string)recipesDataSet.Продукты[j][1];
-                        string tgk = (string)recipesDataSet.Продукты[j][2];
-                        tmp++;
-                        //dish[i].sproduct[j].ssum = (int)recipesDataSet.Продукты[j][2];
+                        dish[i].sproduct[tmp].ssum = (int)recipesDataSet.Продукты[j][2];
+                        tmp++; 
                     }
                 }
             }
-
+            /////
+            
 
 
             //while (reader.Read())
@@ -169,6 +169,13 @@ namespace DataBase_rgz
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
+            this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
+            this.продукты_естьTableAdapter.Fill(this.productsDataSet.Продукты_есть);
         }
     }
 }
