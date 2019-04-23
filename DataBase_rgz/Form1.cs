@@ -27,12 +27,12 @@ namespace DataBase_rgz
 
     public partial class Form1 : Form
     {
-        sreciepts[] dish;
+       // sreciepts[] dish;
 
         public Form1()
         {
             InitializeComponent();
-            LoadData();
+            
             //string[] rproducts = new string[10];
             //int[] rsum = new int[10];
 
@@ -56,34 +56,74 @@ namespace DataBase_rgz
         private void LoadData()
         {
             Form1_Load();
-            int n = (int)this.блюдоTableAdapter.sum_dish();
-            int m = (int)this.продуктыTableAdapter.sum_product();
-            int tmp;
-            dish = new sreciepts[n];
-            for (int i = 0; i < n; i++)
+            string str;
+            int num;
+            for (int i = 0; i < dataGridView4.RowCount; i++)
             {
-                dish[i].scategory = (string)recipesDataSet.Блюдо[i][2];
-                dish[i].sdish = (string)recipesDataSet.Блюдо[i][1];
-                dish[i].snum = 0;
-                for (int j = 0; j < m; j++)
+                dataGridView4.CurrentCell = dataGridView4.Rows[i].Cells[1];
+                for (int j = 0; j < dataGridView5.RowCount; j++)
                 {
-                    if ((int)recipesDataSet.Продукты[dish[i].snum][3] == (int)recipesDataSet.Блюдо[i][0])
-                        dish[i].snum = dish[i].snum + 1;
-                }
-                dish[i].sproduct = new sproducts[dish[i].snum];
-                tmp = 0;
-                for (int j = 0; j < m; j++)
-                {
-                    if (((int)recipesDataSet.Продукты[j][3] == (int)recipesDataSet.Блюдо[i][0]) && (tmp< dish[i].snum))
+                    str = dataGridView5.Rows[j].Cells[0].Value.ToString();
+                    num = -1;
+                    do
                     {
-                        dish[i].sproduct[tmp].spruduct = (string)recipesDataSet.Продукты[j][1];
-                        dish[i].sproduct[tmp].ssum = (int)recipesDataSet.Продукты[j][2];
-                        tmp++; 
+                        num++;
+                    } while ((str != dataGridView3.Rows[num].Cells[0].Value.ToString()) && (num < dataGridView3.RowCount - 1));
+                    if ((str == dataGridView3.Rows[num].Cells[0].Value.ToString()) && 
+                        ((int)dataGridView5.Rows[j].Cells[1].Value <= (int)dataGridView3.Rows[num].Cells[1].Value))
+                    {
+                        textBox3.Text = dataGridView5.Rows[j].Cells[0].Value.ToString();
+                    }
+                    else
+                    {
+                        if (i != 0) dataGridView4.CurrentCell = dataGridView4.Rows[0].Cells[1];
+                        else dataGridView4.CurrentCell = dataGridView4.Rows[1].Cells[1];
+                        dataGridView4.Rows[i].Visible = false;
+
                     }
                 }
+                
             }
-            /////
             
+            //this.dataGridView4.
+            //int q = (int)this.продукты_естьTableAdapter.number();
+            //int w = (int)this.блюдоTableAdapter.sum_dish();
+            //int e = (int)this.продуктыTableAdapter.sum_product();
+            //this.блюдоTableAdapter.Fill(recipesDataSet.Блюдо);
+            //this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
+            //for (int i = 0; i < q; i++)
+            //{
+
+            //}
+
+            //int n = (int)this.блюдоTableAdapter.sum_dish();
+            //int m = (int)this.продуктыTableAdapter.sum_product();
+            //int tmp;
+            //dish = new sreciepts[n];
+            //for (int i = 0; i < n; i++)
+            //{
+            //    dish[i].scategory = (string)recipesDataSet.Блюдо[i][2];
+            //    dish[i].sdish = (string)recipesDataSet.Блюдо[i][1];
+            //    dish[i].snum = 0;
+            //    for (int j = 0; j < m; j++)
+            //    {
+            //        if ((int)recipesDataSet.Продукты[dish[i].snum][3] == (int)recipesDataSet.Блюдо[i][0])
+            //            dish[i].snum = dish[i].snum + 1;
+            //    }
+            //    dish[i].sproduct = new sproducts[dish[i].snum];
+            //    tmp = 0;
+            //    for (int j = 0; j < m; j++)
+            //    {
+            //        if (((int)recipesDataSet.Продукты[j][3] == (int)recipesDataSet.Блюдо[i][0]) && (tmp< dish[i].snum))
+            //        {
+            //            dish[i].sproduct[tmp].spruduct = (string)recipesDataSet.Продукты[j][1];
+            //            dish[i].sproduct[tmp].ssum = (int)recipesDataSet.Продукты[j][2];
+            //            tmp++; 
+            //        }
+            //    }
+            //}
+            /////
+
 
 
             //while (reader.Read())
@@ -176,6 +216,15 @@ namespace DataBase_rgz
             this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
             this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
             this.продукты_естьTableAdapter.Fill(this.productsDataSet.Продукты_есть);
+        }
+
+        private void TabControl1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox4.Text = "";
+            LoadData();
+
         }
     }
 }

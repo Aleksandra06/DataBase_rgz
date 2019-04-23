@@ -61,7 +61,7 @@
               <Mapping SourceColumn="Кол-во" DataSetColumn="Кол-во" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="products.accdb" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Number" Modifier="Public" Name="Number" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Number">
+              <DbSource ConnectionRef="products.accdb" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="number" Modifier="Public" Name="number" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="number">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM Продукты_есть</CommandText>
@@ -79,7 +79,7 @@
   <xs:element name="productsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="productsDataSet" msprop:Generator_UserDSName="productsDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Продукты_есть" msprop:Generator_TableClassName="Продукты_естьDataTable" msprop:Generator_TableVarName="tableПродукты_есть" msprop:Generator_RowChangedName="Продукты_естьRowChanged" msprop:Generator_TablePropName="Продукты_есть" msprop:Generator_RowDeletingName="Продукты_естьRowDeleting" msprop:Generator_RowChangingName="Продукты_естьRowChanging" msprop:Generator_RowEvHandlerName="Продукты_естьRowChangeEventHandler" msprop:Generator_RowDeletedName="Продукты_естьRowDeleted" msprop:Generator_RowClassName="Продукты_естьRow" msprop:Generator_UserTableName="Продукты_есть" msprop:Generator_RowEvArgName="Продукты_естьRowChangeEvent">
+        <xs:element name="Продукты_есть" msprop:Generator_TableClassName="Продукты_естьDataTable" msprop:Generator_TableVarName="tableПродукты_есть" msprop:Generator_TablePropName="Продукты_есть" msprop:Generator_RowDeletingName="Продукты_естьRowDeleting" msprop:Generator_RowChangingName="Продукты_естьRowChanging" msprop:Generator_RowEvHandlerName="Продукты_естьRowChangeEventHandler" msprop:Generator_RowDeletedName="Продукты_естьRowDeleted" msprop:Generator_UserTableName="Продукты_есть" msprop:Generator_RowChangedName="Продукты_естьRowChanged" msprop:Generator_RowEvArgName="Продукты_естьRowChangeEvent" msprop:Generator_RowClassName="Продукты_естьRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Код" msprop:Generator_ColumnVarNameInTable="columnКод" msprop:Generator_ColumnPropNameInRow="Код" msprop:Generator_ColumnPropNameInTable="КодColumn" msprop:Generator_UserColumnName="Код" type="xs:int" />
