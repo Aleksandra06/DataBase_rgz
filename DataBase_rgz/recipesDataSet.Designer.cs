@@ -26,7 +26,7 @@ namespace DataBase_rgz {
         
         private БлюдоDataTable tableБлюдо;
         
-        private ПродуктDataTable tableПродукт;
+        private ПродуктыDataTable tableПродукты;
         
         private global::System.Data.DataRelation relationрецептПродукт;
         
@@ -61,8 +61,8 @@ namespace DataBase_rgz {
                 if ((ds.Tables["Блюдо"] != null)) {
                     base.Tables.Add(new БлюдоDataTable(ds.Tables["Блюдо"]));
                 }
-                if ((ds.Tables["Продукт"] != null)) {
-                    base.Tables.Add(new ПродуктDataTable(ds.Tables["Продукт"]));
+                if ((ds.Tables["Продукты"] != null)) {
+                    base.Tables.Add(new ПродуктыDataTable(ds.Tables["Продукты"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -96,9 +96,9 @@ namespace DataBase_rgz {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ПродуктDataTable Продукт {
+        public ПродуктыDataTable Продукты {
             get {
-                return this.tableПродукт;
+                return this.tableПродукты;
             }
         }
         
@@ -172,8 +172,8 @@ namespace DataBase_rgz {
                 if ((ds.Tables["Блюдо"] != null)) {
                     base.Tables.Add(new БлюдоDataTable(ds.Tables["Блюдо"]));
                 }
-                if ((ds.Tables["Продукт"] != null)) {
-                    base.Tables.Add(new ПродуктDataTable(ds.Tables["Продукт"]));
+                if ((ds.Tables["Продукты"] != null)) {
+                    base.Tables.Add(new ПродуктыDataTable(ds.Tables["Продукты"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -214,10 +214,10 @@ namespace DataBase_rgz {
                     this.tableБлюдо.InitVars();
                 }
             }
-            this.tableПродукт = ((ПродуктDataTable)(base.Tables["Продукт"]));
+            this.tableПродукты = ((ПродуктыDataTable)(base.Tables["Продукты"]));
             if ((initTable == true)) {
-                if ((this.tableПродукт != null)) {
-                    this.tableПродукт.InitVars();
+                if ((this.tableПродукты != null)) {
+                    this.tableПродукты.InitVars();
                 }
             }
             this.relationрецептПродукт = this.Relations["рецептПродукт"];
@@ -233,11 +233,11 @@ namespace DataBase_rgz {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableБлюдо = new БлюдоDataTable();
             base.Tables.Add(this.tableБлюдо);
-            this.tableПродукт = new ПродуктDataTable();
-            base.Tables.Add(this.tableПродукт);
+            this.tableПродукты = new ПродуктыDataTable();
+            base.Tables.Add(this.tableПродукты);
             this.relationрецептПродукт = new global::System.Data.DataRelation("рецептПродукт", new global::System.Data.DataColumn[] {
                         this.tableБлюдо.КодColumn}, new global::System.Data.DataColumn[] {
-                        this.tableПродукт.Код_рецептаColumn}, false);
+                        this.tableПродукты.Код_рецептаColumn}, false);
             this.Relations.Add(this.relationрецептПродукт);
         }
         
@@ -249,7 +249,7 @@ namespace DataBase_rgz {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeПродукт() {
+        private bool ShouldSerializeПродукты() {
             return false;
         }
         
@@ -312,7 +312,7 @@ namespace DataBase_rgz {
         public delegate void БлюдоRowChangeEventHandler(object sender, БлюдоRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void ПродуктRowChangeEventHandler(object sender, ПродуктRowChangeEvent e);
+        public delegate void ПродуктыRowChangeEventHandler(object sender, ПродуктыRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -610,7 +610,7 @@ namespace DataBase_rgz {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ПродуктDataTable : global::System.Data.TypedTableBase<ПродуктRow> {
+        public partial class ПродуктыDataTable : global::System.Data.TypedTableBase<ПродуктыRow> {
             
             private global::System.Data.DataColumn columnКод;
             
@@ -622,8 +622,8 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктDataTable() {
-                this.TableName = "Продукт";
+            public ПродуктыDataTable() {
+                this.TableName = "Продукты";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -631,7 +631,7 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ПродуктDataTable(global::System.Data.DataTable table) {
+            internal ПродуктыDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -648,7 +648,7 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected ПродуктDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ПродуктыDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -696,34 +696,34 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRow this[int index] {
+            public ПродуктыRow this[int index] {
                 get {
-                    return ((ПродуктRow)(this.Rows[index]));
+                    return ((ПродуктыRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктRowChangeEventHandler ПродуктRowChanging;
+            public event ПродуктыRowChangeEventHandler ПродуктыRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктRowChangeEventHandler ПродуктRowChanged;
+            public event ПродуктыRowChangeEventHandler ПродуктыRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктRowChangeEventHandler ПродуктRowDeleting;
+            public event ПродуктыRowChangeEventHandler ПродуктыRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ПродуктRowChangeEventHandler ПродуктRowDeleted;
+            public event ПродуктыRowChangeEventHandler ПродуктыRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddПродуктRow(ПродуктRow row) {
+            public void AddПродуктыRow(ПродуктыRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRow AddПродуктRow(string Продукт, string _Количество_5чел, БлюдоRow parentБлюдоRowByрецептПродукт) {
-                ПродуктRow rowПродуктRow = ((ПродуктRow)(this.NewRow()));
+            public ПродуктыRow AddПродуктыRow(string Продукт, string _Количество_5чел, БлюдоRow parentБлюдоRowByрецептПродукт) {
+                ПродуктыRow rowПродуктыRow = ((ПродуктыRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Продукт,
@@ -732,22 +732,22 @@ namespace DataBase_rgz {
                 if ((parentБлюдоRowByрецептПродукт != null)) {
                     columnValuesArray[3] = parentБлюдоRowByрецептПродукт[0];
                 }
-                rowПродуктRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowПродуктRow);
-                return rowПродуктRow;
+                rowПродуктыRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowПродуктыRow);
+                return rowПродуктыRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRow FindByКод(int Код) {
-                return ((ПродуктRow)(this.Rows.Find(new object[] {
+            public ПродуктыRow FindByКод(int Код) {
+                return ((ПродуктыRow)(this.Rows.Find(new object[] {
                             Код})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ПродуктDataTable cln = ((ПродуктDataTable)(base.Clone()));
+                ПродуктыDataTable cln = ((ПродуктыDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -755,7 +755,7 @@ namespace DataBase_rgz {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ПродуктDataTable();
+                return new ПродуктыDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -793,28 +793,28 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRow NewПродуктRow() {
-                return ((ПродуктRow)(this.NewRow()));
+            public ПродуктыRow NewПродуктыRow() {
+                return ((ПродуктыRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ПродуктRow(builder);
+                return new ПродуктыRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ПродуктRow);
+                return typeof(ПродуктыRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ПродуктRowChanged != null)) {
-                    this.ПродуктRowChanged(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
+                if ((this.ПродуктыRowChanged != null)) {
+                    this.ПродуктыRowChanged(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
                 }
             }
             
@@ -822,8 +822,8 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ПродуктRowChanging != null)) {
-                    this.ПродуктRowChanging(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
+                if ((this.ПродуктыRowChanging != null)) {
+                    this.ПродуктыRowChanging(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
                 }
             }
             
@@ -831,8 +831,8 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ПродуктRowDeleted != null)) {
-                    this.ПродуктRowDeleted(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
+                if ((this.ПродуктыRowDeleted != null)) {
+                    this.ПродуктыRowDeleted(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
                 }
             }
             
@@ -840,14 +840,14 @@ namespace DataBase_rgz {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ПродуктRowDeleting != null)) {
-                    this.ПродуктRowDeleting(this, new ПродуктRowChangeEvent(((ПродуктRow)(e.Row)), e.Action));
+                if ((this.ПродуктыRowDeleting != null)) {
+                    this.ПродуктыRowDeleting(this, new ПродуктыRowChangeEvent(((ПродуктыRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveПродуктRow(ПродуктRow row) {
+            public void RemoveПродуктыRow(ПродуктыRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -874,7 +874,7 @@ namespace DataBase_rgz {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ПродуктDataTable";
+                attribute2.FixedValue = "ПродуктыDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -998,12 +998,12 @@ namespace DataBase_rgz {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRow[] GetПродуктRows() {
+            public ПродуктыRow[] GetПродуктыRows() {
                 if ((this.Table.ChildRelations["рецептПродукт"] == null)) {
-                    return new ПродуктRow[0];
+                    return new ПродуктыRow[0];
                 }
                 else {
-                    return ((ПродуктRow[])(base.GetChildRows(this.Table.ChildRelations["рецептПродукт"])));
+                    return ((ПродуктыRow[])(base.GetChildRows(this.Table.ChildRelations["рецептПродукт"])));
                 }
             }
         }
@@ -1011,25 +1011,25 @@ namespace DataBase_rgz {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ПродуктRow : global::System.Data.DataRow {
+        public partial class ПродуктыRow : global::System.Data.DataRow {
             
-            private ПродуктDataTable tableПродукт;
+            private ПродуктыDataTable tableПродукты;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ПродуктRow(global::System.Data.DataRowBuilder rb) : 
+            internal ПродуктыRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableПродукт = ((ПродуктDataTable)(this.Table));
+                this.tableПродукты = ((ПродуктыDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Код {
                 get {
-                    return ((int)(this[this.tableПродукт.КодColumn]));
+                    return ((int)(this[this.tableПродукты.КодColumn]));
                 }
                 set {
-                    this[this.tableПродукт.КодColumn] = value;
+                    this[this.tableПродукты.КодColumn] = value;
                 }
             }
             
@@ -1038,14 +1038,14 @@ namespace DataBase_rgz {
             public string Продукт {
                 get {
                     try {
-                        return ((string)(this[this.tableПродукт.ПродуктColumn]));
+                        return ((string)(this[this.tableПродукты.ПродуктColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Продукт\' в таблице \'Продукт\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Продукт\' в таблице \'Продукты\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableПродукт.ПродуктColumn] = value;
+                    this[this.tableПродукты.ПродуктColumn] = value;
                 }
             }
             
@@ -1054,14 +1054,14 @@ namespace DataBase_rgz {
             public string _Количество_5чел {
                 get {
                     try {
-                        return ((string)(this[this.tableПродукт._Количество_5челColumn]));
+                        return ((string)(this[this.tableПродукты._Количество_5челColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Количество/5чел\' в таблице \'Продукт\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Количество/5чел\' в таблице \'Продукты\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableПродукт._Количество_5челColumn] = value;
+                    this[this.tableПродукты._Количество_5челColumn] = value;
                 }
             }
             
@@ -1070,14 +1070,14 @@ namespace DataBase_rgz {
             public int Код_рецепта {
                 get {
                     try {
-                        return ((int)(this[this.tableПродукт.Код_рецептаColumn]));
+                        return ((int)(this[this.tableПродукты.Код_рецептаColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Код рецепта\' в таблице \'Продукт\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Код рецепта\' в таблице \'Продукты\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableПродукт.Код_рецептаColumn] = value;
+                    this[this.tableПродукты.Код_рецептаColumn] = value;
                 }
             }
             
@@ -1095,37 +1095,37 @@ namespace DataBase_rgz {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsПродуктNull() {
-                return this.IsNull(this.tableПродукт.ПродуктColumn);
+                return this.IsNull(this.tableПродукты.ПродуктColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetПродуктNull() {
-                this[this.tableПродукт.ПродуктColumn] = global::System.Convert.DBNull;
+                this[this.tableПродукты.ПродуктColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Is_Количество_5челNull() {
-                return this.IsNull(this.tableПродукт._Количество_5челColumn);
+                return this.IsNull(this.tableПродукты._Количество_5челColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Set_Количество_5челNull() {
-                this[this.tableПродукт._Количество_5челColumn] = global::System.Convert.DBNull;
+                this[this.tableПродукты._Количество_5челColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsКод_рецептаNull() {
-                return this.IsNull(this.tableПродукт.Код_рецептаColumn);
+                return this.IsNull(this.tableПродукты.Код_рецептаColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetКод_рецептаNull() {
-                this[this.tableПродукт.Код_рецептаColumn] = global::System.Convert.DBNull;
+                this[this.tableПродукты.Код_рецептаColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1167,22 +1167,22 @@ namespace DataBase_rgz {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class ПродуктRowChangeEvent : global::System.EventArgs {
+        public class ПродуктыRowChangeEvent : global::System.EventArgs {
             
-            private ПродуктRow eventRow;
+            private ПродуктыRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRowChangeEvent(ПродуктRow row, global::System.Data.DataRowAction action) {
+            public ПродуктыRowChangeEvent(ПродуктыRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ПродуктRow Row {
+            public ПродуктыRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1367,7 +1367,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[4];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[5];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Код, Рецепт, Категория FROM Блюдо";
@@ -1385,10 +1385,14 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
             this._commandCollection[3] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT    DISTINCT     Блюдо.Код, Блюдо.Рецепт, Блюдо.Категория\r\nFROM            " +
-                "(Блюдо INNER JOIN\r\n                         Продукт ON Блюдо.Код = Продукт.[Код " +
-                "рецепта])\r\nWHERE        Продукт LIKE \'%\' + @str + \'%\'\r\n";
+                "(Блюдо INNER JOIN\r\n                         Продукты ON Блюдо.Код = Продукты.[Ко" +
+                "д рецепта])\r\nWHERE        Продукт LIKE \'%\' + @str + \'%\'";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("@str", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), null, global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT COUNT(*) FROM Блюдо";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1672,6 +1676,34 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 }
             }
         }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object sum_recipes() {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
+        }
     }
     
     /// <summary>
@@ -1683,7 +1715,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class ПродуктTableAdapter : global::System.ComponentModel.Component {
+    public partial class ПродуктыTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OleDb.OleDbDataAdapter _adapter;
         
@@ -1697,7 +1729,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public ПродуктTableAdapter() {
+        public ПродуктыTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1794,7 +1826,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Продукт";
+            tableMapping.DataSetTable = "Продукты";
             tableMapping.ColumnMappings.Add("Код", "Код");
             tableMapping.ColumnMappings.Add("Продукт", "Продукт");
             tableMapping.ColumnMappings.Add("Количество/5чел", "Количество/5чел");
@@ -1802,9 +1834,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Продукт` WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`" +
-                "Продукт` = ?)) AND ((? = 1 AND `Количество/5чел` IS NULL) OR (`Количество/5чел` " +
-                "= ?)) AND ((? = 1 AND `Код рецепта` IS NULL) OR (`Код рецепта` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Продукты` WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (" +
+                "`Продукт` = ?)) AND ((? = 1 AND `Количество/5чел` IS NULL) OR (`Количество/5чел`" +
+                " = ?)) AND ((? = 1 AND `Код рецепта` IS NULL) OR (`Код рецепта` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Продукт", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Original, true, null));
@@ -1815,15 +1847,15 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Продукт` (`Продукт`, `Количество/5чел`, `Код рецепта`) VALUES (?, ?," +
-                " ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `Продукты` (`Продукт`, `Количество/5чел`, `Код рецепта`) VALUES (?, ?" +
+                ", ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Продукт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Количество/5чел", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Код_рецепта", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Код рецепта", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Продукт` SET `Продукт` = ?, `Количество/5чел` = ?, `Код рецепта` = ? WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`Продукт` = ?)) AND ((? = 1 AND `Количество/5чел` IS NULL) OR (`Количество/5чел` = ?)) AND ((? = 1 AND `Код рецепта` IS NULL) OR (`Код рецепта` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Продукты` SET `Продукт` = ?, `Количество/5чел` = ?, `Код рецепта` = ? WHERE ((`Код` = ?) AND ((? = 1 AND `Продукт` IS NULL) OR (`Продукт` = ?)) AND ((? = 1 AND `Количество/5чел` IS NULL) OR (`Количество/5чел` = ?)) AND ((? = 1 AND `Код рецепта` IS NULL) OR (`Код рецепта` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Продукт", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Продукт", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Количество/5чел", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Количество/5чел", global::System.Data.DataRowVersion.Current, false, null));
@@ -1847,18 +1879,22 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[2];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Код, Продукт, [Количество/5чел], [Код рецепта] FROM Продукт";
+            this._commandCollection[0].CommandText = "SELECT Код, Продукт, [Количество/5чел], [Код рецепта] FROM Продукты";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM Продукты";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(recipesDataSet.ПродуктDataTable dataTable) {
+        public virtual int Fill(recipesDataSet.ПродуктыDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1871,9 +1907,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual recipesDataSet.ПродуктDataTable GetData() {
+        public virtual recipesDataSet.ПродуктыDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            recipesDataSet.ПродуктDataTable dataTable = new recipesDataSet.ПродуктDataTable();
+            recipesDataSet.ПродуктыDataTable dataTable = new recipesDataSet.ПродуктыDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1881,7 +1917,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(recipesDataSet.ПродуктDataTable dataTable) {
+        public virtual int Update(recipesDataSet.ПродуктыDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -1889,7 +1925,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(recipesDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Продукт");
+            return this.Adapter.Update(dataSet, "Продукты");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2055,6 +2091,34 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 }
             }
         }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<int> sum_product() {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<int>();
+            }
+            else {
+                return new global::System.Nullable<int>(((int)(returnValue)));
+            }
+        }
     }
     
     /// <summary>
@@ -2071,7 +2135,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         
         private БлюдоTableAdapter _блюдоTableAdapter;
         
-        private ПродуктTableAdapter _продуктTableAdapter;
+        private ПродуктыTableAdapter _продуктыTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -2107,12 +2171,12 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public ПродуктTableAdapter ПродуктTableAdapter {
+        public ПродуктыTableAdapter ПродуктыTableAdapter {
             get {
-                return this._продуктTableAdapter;
+                return this._продуктыTableAdapter;
             }
             set {
-                this._продуктTableAdapter = value;
+                this._продуктыTableAdapter = value;
             }
         }
         
@@ -2139,9 +2203,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                             && (this._блюдоTableAdapter.Connection != null))) {
                     return this._блюдоTableAdapter.Connection;
                 }
-                if (((this._продуктTableAdapter != null) 
-                            && (this._продуктTableAdapter.Connection != null))) {
-                    return this._продуктTableAdapter.Connection;
+                if (((this._продуктыTableAdapter != null) 
+                            && (this._продуктыTableAdapter.Connection != null))) {
+                    return this._продуктыTableAdapter.Connection;
                 }
                 return null;
             }
@@ -2159,7 +2223,7 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 if ((this._блюдоTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._продуктTableAdapter != null)) {
+                if ((this._продуктыTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -2182,12 +2246,12 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._продуктTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Продукт.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._продуктыTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Продукты.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._продуктTableAdapter.Update(updatedRows));
+                    result = (result + this._продуктыTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -2209,11 +2273,11 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._продуктTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Продукт.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._продуктыTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Продукты.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._продуктTableAdapter.Update(addedRows));
+                    result = (result + this._продуктыTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -2227,11 +2291,11 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(recipesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._продуктTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Продукт.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._продуктыTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Продукты.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._продуктTableAdapter.Update(deletedRows));
+                    result = (result + this._продуктыTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -2287,8 +2351,8 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
-            if (((this._продуктTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._продуктTableAdapter.Connection) == false))) {
+            if (((this._продуктыTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._продуктыTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -2333,13 +2397,13 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._блюдоTableAdapter.Adapter);
                     }
                 }
-                if ((this._продуктTableAdapter != null)) {
-                    revertConnections.Add(this._продуктTableAdapter, this._продуктTableAdapter.Connection);
-                    this._продуктTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
-                    this._продуктTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
-                    if (this._продуктTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._продуктTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._продуктTableAdapter.Adapter);
+                if ((this._продуктыTableAdapter != null)) {
+                    revertConnections.Add(this._продуктыTableAdapter, this._продуктыTableAdapter.Connection);
+                    this._продуктыTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
+                    this._продуктыTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
+                    if (this._продуктыTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._продуктыTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._продуктыTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -2404,9 +2468,9 @@ namespace DataBase_rgz.recipesDataSetTableAdapters {
                     this._блюдоTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._блюдоTableAdapter]));
                     this._блюдоTableAdapter.Transaction = null;
                 }
-                if ((this._продуктTableAdapter != null)) {
-                    this._продуктTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._продуктTableAdapter]));
-                    this._продуктTableAdapter.Transaction = null;
+                if ((this._продуктыTableAdapter != null)) {
+                    this._продуктыTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._продуктыTableAdapter]));
+                    this._продуктыTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

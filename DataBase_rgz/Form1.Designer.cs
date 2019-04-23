@@ -38,9 +38,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.рецептПродуктBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.блюдоBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.recipesDataSet = new DataBase_rgz.recipesDataSet();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,20 +57,19 @@
             this.productsDataSet = new DataBase_rgz.productsDataSet();
             this.label5 = new System.Windows.Forms.Label();
             this.продукты_естьTableAdapter = new DataBase_rgz.productsDataSetTableAdapters.Продукты_естьTableAdapter();
-            this.продуктBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.recipesDataSet = new DataBase_rgz.recipesDataSet();
+            this.блюдоBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.блюдоTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.БлюдоTableAdapter();
-            this.продуктTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.ПродуктTableAdapter();
-            this.продуктDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.количество5челDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.рецептDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.категорияDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.рецептПродуктBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.продуктыTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.ПродуктыTableAdapter();
+            this.продуктDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.количество5челDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.рецептПродуктBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.блюдоBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recipesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
@@ -81,7 +77,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.продуктыестьBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.продуктBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recipesDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.блюдоBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.рецептПродуктBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -184,21 +182,6 @@
             this.dataGridView6.Size = new System.Drawing.Size(235, 425);
             this.dataGridView6.TabIndex = 13;
             // 
-            // рецептПродуктBindingSource
-            // 
-            this.рецептПродуктBindingSource.DataMember = "рецептПродукт";
-            this.рецептПродуктBindingSource.DataSource = this.блюдоBindingSource;
-            // 
-            // блюдоBindingSource
-            // 
-            this.блюдоBindingSource.DataMember = "Блюдо";
-            this.блюдоBindingSource.DataSource = this.recipesDataSet;
-            // 
-            // recipesDataSet
-            // 
-            this.recipesDataSet.DataSetName = "recipesDataSet";
-            this.recipesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -249,11 +232,11 @@
             this.рецептDataGridViewTextBoxColumn,
             this.категорияDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.блюдоBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 19);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(310, 425);
+            this.dataGridView1.Size = new System.Drawing.Size(318, 425);
             this.dataGridView1.TabIndex = 8;
             // 
             // tabPage3
@@ -399,41 +382,23 @@
             // 
             this.продукты_естьTableAdapter.ClearBeforeFill = true;
             // 
-            // продуктBindingSource
+            // recipesDataSet
             // 
-            this.продуктBindingSource.DataMember = "Продукт";
-            this.продуктBindingSource.DataSource = this.recipesDataSet;
+            this.recipesDataSet.DataSetName = "recipesDataSet";
+            this.recipesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // блюдоBindingSource
+            // 
+            this.блюдоBindingSource.DataMember = "Блюдо";
+            this.блюдоBindingSource.DataSource = this.recipesDataSet;
             // 
             // блюдоTableAdapter
             // 
             this.блюдоTableAdapter.ClearBeforeFill = true;
             // 
-            // продуктTableAdapter
-            // 
-            this.продуктTableAdapter.ClearBeforeFill = true;
-            // 
-            // продуктDataGridViewTextBoxColumn
-            // 
-            this.продуктDataGridViewTextBoxColumn.DataPropertyName = "Продукт";
-            this.продуктDataGridViewTextBoxColumn.FillWeight = 128.934F;
-            this.продуктDataGridViewTextBoxColumn.HeaderText = "Продукт";
-            this.продуктDataGridViewTextBoxColumn.Name = "продуктDataGridViewTextBoxColumn";
-            this.продуктDataGridViewTextBoxColumn.ReadOnly = true;
-            this.продуктDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // количество5челDataGridViewTextBoxColumn
-            // 
-            this.количество5челDataGridViewTextBoxColumn.DataPropertyName = "Количество/5чел";
-            this.количество5челDataGridViewTextBoxColumn.FillWeight = 71.06599F;
-            this.количество5челDataGridViewTextBoxColumn.HeaderText = "Количество/5чел";
-            this.количество5челDataGridViewTextBoxColumn.Name = "количество5челDataGridViewTextBoxColumn";
-            this.количество5челDataGridViewTextBoxColumn.ReadOnly = true;
-            this.количество5челDataGridViewTextBoxColumn.Width = 82;
-            // 
             // рецептDataGridViewTextBoxColumn
             // 
             this.рецептDataGridViewTextBoxColumn.DataPropertyName = "Рецепт";
-            this.рецептDataGridViewTextBoxColumn.FillWeight = 101.5228F;
             this.рецептDataGridViewTextBoxColumn.HeaderText = "Рецепт";
             this.рецептDataGridViewTextBoxColumn.Name = "рецептDataGridViewTextBoxColumn";
             this.рецептDataGridViewTextBoxColumn.ReadOnly = true;
@@ -442,11 +407,35 @@
             // категорияDataGridViewTextBoxColumn
             // 
             this.категорияDataGridViewTextBoxColumn.DataPropertyName = "Категория";
-            this.категорияDataGridViewTextBoxColumn.FillWeight = 98.47717F;
             this.категорияDataGridViewTextBoxColumn.HeaderText = "Категория";
             this.категорияDataGridViewTextBoxColumn.Name = "категорияDataGridViewTextBoxColumn";
             this.категорияDataGridViewTextBoxColumn.ReadOnly = true;
             this.категорияDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // рецептПродуктBindingSource
+            // 
+            this.рецептПродуктBindingSource.DataMember = "рецептПродукт";
+            this.рецептПродуктBindingSource.DataSource = this.блюдоBindingSource;
+            // 
+            // продуктыTableAdapter
+            // 
+            this.продуктыTableAdapter.ClearBeforeFill = true;
+            // 
+            // продуктDataGridViewTextBoxColumn
+            // 
+            this.продуктDataGridViewTextBoxColumn.DataPropertyName = "Продукт";
+            this.продуктDataGridViewTextBoxColumn.HeaderText = "Продукт";
+            this.продуктDataGridViewTextBoxColumn.Name = "продуктDataGridViewTextBoxColumn";
+            this.продуктDataGridViewTextBoxColumn.ReadOnly = true;
+            this.продуктDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // количество5челDataGridViewTextBoxColumn
+            // 
+            this.количество5челDataGridViewTextBoxColumn.DataPropertyName = "Количество/5чел";
+            this.количество5челDataGridViewTextBoxColumn.HeaderText = "Количество/5чел";
+            this.количество5челDataGridViewTextBoxColumn.Name = "количество5челDataGridViewTextBoxColumn";
+            this.количество5челDataGridViewTextBoxColumn.ReadOnly = true;
+            this.количество5челDataGridViewTextBoxColumn.Width = 82;
             // 
             // Form1
             // 
@@ -461,16 +450,13 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Составитель меню";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            //this.Load += new System.EventHandler(this.Form1_Load);
             this.TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.рецептПродуктBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.блюдоBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recipesDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -479,7 +465,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.продуктыестьBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.продуктBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recipesDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.блюдоBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.рецептПродуктBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -505,12 +493,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn колвоDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView5;
-        private recipesDataSet recipesDataSet;
-        private System.Windows.Forms.BindingSource блюдоBindingSource;
-        private recipesDataSetTableAdapters.БлюдоTableAdapter блюдоTableAdapter;
-        private System.Windows.Forms.BindingSource продуктBindingSource;
-        private recipesDataSetTableAdapters.ПродуктTableAdapter продуктTableAdapter;
-        private System.Windows.Forms.BindingSource рецептПродуктBindingSource;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView6;
@@ -519,10 +501,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn продуктDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn количество5челDataGridViewTextBoxColumn;
+        private recipesDataSet recipesDataSet;
+        private System.Windows.Forms.BindingSource блюдоBindingSource;
+        private recipesDataSetTableAdapters.БлюдоTableAdapter блюдоTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn рецептDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn категорияDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource рецептПродуктBindingSource;
+        private recipesDataSetTableAdapters.ПродуктыTableAdapter продуктыTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn продуктDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn количество5челDataGridViewTextBoxColumn;
     }
 }
 

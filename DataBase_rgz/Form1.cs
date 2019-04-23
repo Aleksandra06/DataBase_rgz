@@ -11,22 +11,28 @@ using System.Windows.Forms;
 namespace DataBase_rgz
 {
 
-    //public struct reciepts
-    //{
-    //    public string rcategory;
-    //    public string rdish;
-    //    public string[] rproducts;
-    //    public int[] rsum;
-    //};
+    public struct sproducts
+    {
+        public string spruduct;
+        public int ssum;
+    };
+
+    public struct sreciepts
+    {
+        public string scategory;
+        public string sdish;
+        public int snum;
+        public sproducts[] sproduct;
+    };
 
     public partial class Form1 : Form
     {
-        //int n;
-       // reciepts[] dishs;
+        sreciepts[] dish;
 
         public Form1()
         {
             InitializeComponent();
+            LoadData();
             //string[] rproducts = new string[10];
             //int[] rsum = new int[10];
 
@@ -47,6 +53,56 @@ namespace DataBase_rgz
 
         }
 
+        private void LoadData()
+        {
+            Form1_Load();
+            int n = (int)this.блюдоTableAdapter.sum_recipes();
+            int m = (int)this.продуктыTableAdapter.sum_product();
+            int tmp;
+            dish = new sreciepts[n];
+            for (int i = 0; i < n; i++)
+            {
+                dish[i].scategory = (string)recipesDataSet.Блюдо[i][2];
+                dish[i].sdish = (string)recipesDataSet.Блюдо[i][1];
+                dish[i].snum = 0;
+                for (int j = 0; j < m; j++)
+                {
+                    if ((int)recipesDataSet.Продукты[dish[i].snum][3] == (int)recipesDataSet.Блюдо[i][0])
+                        dish[i].snum = dish[i].snum + 1;
+                }
+                dish[i].sproduct = new sproducts[dish[i].snum];
+                tmp = 0;
+                for (int j = 0; j < m; j++)
+                {
+                    if (((int)recipesDataSet.Продукты[j][3] == (int)recipesDataSet.Блюдо[i][0]) && (tmp< dish[i].snum))
+                    {
+                        dish[i].sproduct[tmp].spruduct = (string)recipesDataSet.Продукты[j][1];
+                        string tgk = (string)recipesDataSet.Продукты[j][2];
+                        tmp++;
+                        //dish[i].sproduct[j].ssum = (int)recipesDataSet.Продукты[j][2];
+                    }
+                }
+            }
+
+
+
+            //while (reader.Read())
+            //{
+            //    data.Add(new string[3]);
+
+            //    data[data.Count - 1][0] = reader[0].ToString();
+            //    data[data.Count - 1][1] = reader[1].ToString();
+            //    data[data.Count - 1][2] = reader[2].ToString();
+            //}
+
+            //reader.Close();
+
+            //myConnection.Close();
+
+            //foreach (string[] s in data)
+            //    dataGridView1.Rows.Add(s);
+        }
+
         private void textBoxKolChel_KeyPress(object sender, KeyPressEventArgs e)//ввод цифр
         {
             char number = e.KeyChar;
@@ -56,23 +112,11 @@ namespace DataBase_rgz
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load()
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "recipesDataSet.Продукт". При необходимости она может быть перемещена или удалена.
-            this.продуктTableAdapter.Fill(this.recipesDataSet.Продукт);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "recipesDataSet.Блюдо". При необходимости она может быть перемещена или удалена.
+            this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
             this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "recipesDataSet.Продукт". При необходимости она может быть перемещена или удалена.
-            this.продуктTableAdapter.Fill(this.recipesDataSet.Продукт);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "recipesDataSet.Блюдо". При необходимости она может быть перемещена или удалена.
-            this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "productsDataSet.Продукты_есть". При необходимости она может быть перемещена или удалена.
             this.продукты_естьTableAdapter.Fill(this.productsDataSet.Продукты_есть);
-
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "recipesDataSet.Продукты". При необходимости она может быть перемещена или удалена.
-           // this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "recipesDataSet.Блюдо". При необходимости она может быть перемещена или удалена.
-            this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
 
         }
 
