@@ -60,6 +60,7 @@ namespace DataBase_rgz
             int num;
             for (int i = 0; i < dataGridView4.RowCount; i++)
             {
+                dataGridView4.Rows[i].Visible = true;
                 dataGridView4.CurrentCell = dataGridView4.Rows[i].Cells[1];
                 for (int j = 0; j < dataGridView5.RowCount; j++)
                 {
@@ -69,11 +70,8 @@ namespace DataBase_rgz
                     {
                         num++;
                     } while ((str != dataGridView3.Rows[num].Cells[0].Value.ToString()) && (num < dataGridView3.RowCount - 1));
-                    if ((str == dataGridView3.Rows[num].Cells[0].Value.ToString()) && 
-                        ((int)dataGridView5.Rows[j].Cells[1].Value <= (int)dataGridView3.Rows[num].Cells[1].Value))
-                    {
-                        textBox3.Text = dataGridView5.Rows[j].Cells[0].Value.ToString();
-                    }
+                    if ((str == dataGridView3.Rows[num].Cells[0].Value.ToString()) &&
+                        ((int)dataGridView5.Rows[j].Cells[1].Value <= (int)dataGridView3.Rows[num].Cells[1].Value));
                     else
                     {
                         if (i != 0) dataGridView4.CurrentCell = dataGridView4.Rows[0].Cells[1];
@@ -196,21 +194,7 @@ namespace DataBase_rgz
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-           
-            
-            try
-            {
-               // this.продуктыTableAdapter.Product_seach(this.recipesDataSet.Продукты, this.productsDataSet.Продукты_есть);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
+       
         private void Form1_Load(object sender, EventArgs e)
         {
             this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
@@ -225,6 +209,46 @@ namespace DataBase_rgz
             textBox4.Text = "";
             LoadData();
 
+        }
+
+        public void search_radioButton(string str)//когда всего одна строка или ноль, то ее неполучается сделать невидимой
+        {
+            for (int i = 0; i < dataGridView4.RowCount; i++)
+            {
+                if ((dataGridView4.Rows[i].Visible == true) && (str != dataGridView4.Rows[i].Cells[2].Value.ToString()))
+                {
+                    dataGridView4.Rows[i].Visible = false;
+                }
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
+            search_radioButton("Закуска");
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
+            search_radioButton("Первое");
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
+            search_radioButton("Второе");
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
+            search_radioButton("Десерт");
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

@@ -51,7 +51,6 @@
             this.рецептDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.категорияDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.продуктDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.количество5челDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +73,7 @@
             this.продукты_естьTableAdapter = new DataBase_rgz.productsDataSetTableAdapters.Продукты_естьTableAdapter();
             this.блюдоTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.БлюдоTableAdapter();
             this.продуктыTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.ПродуктыTableAdapter();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -299,7 +299,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.LightYellow;
-            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.radioButton5);
             this.tabPage3.Controls.Add(this.dataGridView5);
             this.tabPage3.Controls.Add(this.dataGridView4);
             this.tabPage3.Controls.Add(this.radioButton4);
@@ -314,13 +314,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Поиск по продуктам";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(686, 80);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 27);
-            this.textBox3.TabIndex = 15;
-            // 
             // dataGridView5
             // 
             this.dataGridView5.AllowUserToAddRows = false;
@@ -333,11 +326,11 @@
             this.количество5челDataGridViewTextBoxColumn1,
             this.кодРецептаDataGridViewTextBoxColumn});
             this.dataGridView5.DataSource = this.рецептПродуктBindingSource1;
-            this.dataGridView5.Location = new System.Drawing.Point(585, 159);
+            this.dataGridView5.Location = new System.Drawing.Point(585, 191);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(212, 298);
+            this.dataGridView5.Size = new System.Drawing.Size(212, 266);
             this.dataGridView5.TabIndex = 14;
             // 
             // продуктDataGridViewTextBoxColumn2
@@ -420,6 +413,7 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Десерт";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -432,6 +426,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Второе";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -444,6 +439,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Первое";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -525,6 +521,19 @@
             // 
             this.продуктыTableAdapter.ClearBeforeFill = true;
             // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton5.Location = new System.Drawing.Point(652, 160);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(49, 25);
+            this.radioButton5.TabIndex = 15;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Все";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,6 +545,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Составитель меню";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -606,7 +616,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn продуктDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn количество5челDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn кодРецептаDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.RadioButton radioButton5;
     }
 }
 
