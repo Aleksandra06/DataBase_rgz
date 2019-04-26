@@ -25,14 +25,26 @@ namespace DataBase_rgz
         public sproducts[] sproduct;
     };
 
+    public struct MENU
+    {
+        public string snack;
+        public string one_dish;
+        public string tho_dish;
+        public string dessert;
+    }
+
     public partial class Form1 : Form
     {
-       // sreciepts[] dish;
+        // sreciepts[] dish;
+        MENU menu;
 
         public Form1()
         {
             InitializeComponent();
-            
+            //System.IO.FileStream fs = new System.IO.FileStream(@"D:/study/Computational_Mathematics/", System.IO.FileMode.Open);
+            //System.Drawing.Image img = System.Drawing.Image.FromStream(fs);
+            //fs.Close();
+            //pictureBox1.Image = img;
             //string[] rproducts = new string[10];
             //int[] rsum = new int[10];
 
@@ -57,7 +69,7 @@ namespace DataBase_rgz
         {
             Form1_Load();
             string str;
-            int num;
+            int num = 0;
             for (int i = 0; i < dataGridView4.RowCount; i++)
             {
                 dataGridView4.Rows[i].Visible = true;
@@ -70,75 +82,14 @@ namespace DataBase_rgz
                     {
                         num++;
                     } while ((str != dataGridView3.Rows[num].Cells[0].Value.ToString()) && (num < dataGridView3.RowCount - 1));
-                    if ((str == dataGridView3.Rows[num].Cells[0].Value.ToString()) &&
-                        ((int)dataGridView5.Rows[j].Cells[1].Value <= (int)dataGridView3.Rows[num].Cells[1].Value));
-                    else
-                    {
+                    if ((str != dataGridView3.Rows[num].Cells[0].Value.ToString()) ||
+                        ((int)dataGridView5.Rows[j].Cells[1].Value >= (int)dataGridView3.Rows[num].Cells[1].Value)) {
                         if (i != 0) dataGridView4.CurrentCell = dataGridView4.Rows[0].Cells[1];
                         else dataGridView4.CurrentCell = dataGridView4.Rows[1].Cells[1];
                         dataGridView4.Rows[i].Visible = false;
-
                     }
                 }
-                
             }
-            
-            //this.dataGridView4.
-            //int q = (int)this.продукты_естьTableAdapter.number();
-            //int w = (int)this.блюдоTableAdapter.sum_dish();
-            //int e = (int)this.продуктыTableAdapter.sum_product();
-            //this.блюдоTableAdapter.Fill(recipesDataSet.Блюдо);
-            //this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
-            //for (int i = 0; i < q; i++)
-            //{
-
-            //}
-
-            //int n = (int)this.блюдоTableAdapter.sum_dish();
-            //int m = (int)this.продуктыTableAdapter.sum_product();
-            //int tmp;
-            //dish = new sreciepts[n];
-            //for (int i = 0; i < n; i++)
-            //{
-            //    dish[i].scategory = (string)recipesDataSet.Блюдо[i][2];
-            //    dish[i].sdish = (string)recipesDataSet.Блюдо[i][1];
-            //    dish[i].snum = 0;
-            //    for (int j = 0; j < m; j++)
-            //    {
-            //        if ((int)recipesDataSet.Продукты[dish[i].snum][3] == (int)recipesDataSet.Блюдо[i][0])
-            //            dish[i].snum = dish[i].snum + 1;
-            //    }
-            //    dish[i].sproduct = new sproducts[dish[i].snum];
-            //    tmp = 0;
-            //    for (int j = 0; j < m; j++)
-            //    {
-            //        if (((int)recipesDataSet.Продукты[j][3] == (int)recipesDataSet.Блюдо[i][0]) && (tmp< dish[i].snum))
-            //        {
-            //            dish[i].sproduct[tmp].spruduct = (string)recipesDataSet.Продукты[j][1];
-            //            dish[i].sproduct[tmp].ssum = (int)recipesDataSet.Продукты[j][2];
-            //            tmp++; 
-            //        }
-            //    }
-            //}
-            /////
-
-
-
-            //while (reader.Read())
-            //{
-            //    data.Add(new string[3]);
-
-            //    data[data.Count - 1][0] = reader[0].ToString();
-            //    data[data.Count - 1][1] = reader[1].ToString();
-            //    data[data.Count - 1][2] = reader[2].ToString();
-            //}
-
-            //reader.Close();
-
-            //myConnection.Close();
-
-            //foreach (string[] s in data)
-            //    dataGridView1.Rows.Add(s);
         }
 
         private void textBoxKolChel_KeyPress(object sender, KeyPressEventArgs e)//ввод цифр
@@ -152,6 +103,9 @@ namespace DataBase_rgz
 
         private void Form1_Load()
         {
+            dataGridView4.Visible = true;
+            dataGridView5.Visible = true;
+            pictureBox1.Visible = false;
             this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
             this.блюдоTableAdapter.Fill(this.recipesDataSet.Блюдо);
             this.продукты_естьTableAdapter.Fill(this.productsDataSet.Продукты_есть);
@@ -213,12 +167,45 @@ namespace DataBase_rgz
 
         public void search_radioButton(string str)//когда всего одна строка или ноль, то ее неполучается сделать невидимой
         {
+            int n = 0;
+            int vis = -1;
             for (int i = 0; i < dataGridView4.RowCount; i++)
             {
-                if ((dataGridView4.Rows[i].Visible == true) && (str != dataGridView4.Rows[i].Cells[2].Value.ToString()))
+                if ((dataGridView4.Rows[i].Visible == true) && (str == dataGridView4.Rows[i].Cells[2].Value.ToString()))
                 {
-                    dataGridView4.Rows[i].Visible = false;
+                    n++;
                 }
+            }
+            if (n != 0)
+            {
+                for (int i = 0; i < dataGridView4.RowCount; i++)
+                {
+                    n = i + 1;
+                    if ((dataGridView4.Rows[i].Visible == true) && (str != dataGridView4.Rows[i].Cells[2].Value.ToString()))
+                    {
+                        if (vis == -1)
+                        {
+                            while (dataGridView4.Rows[n].Visible == false)
+                                n++;
+                            dataGridView4.CurrentCell = dataGridView4.Rows[n].Cells[1];
+                            dataGridView4.Rows[i].Visible = false;
+                        }
+                        else
+                        {
+                            dataGridView4.CurrentCell = dataGridView4.Rows[vis].Cells[1];
+                            dataGridView4.Rows[i].Visible = false;
+                        }
+                    }
+                    else
+                        if (dataGridView4.Rows[i].Visible == true)
+                            vis = i;
+                }
+            }
+            else
+            {
+                dataGridView4.Visible = false;
+                dataGridView5.Visible = false;
+                pictureBox1.Visible = true;
             }
         }
 
@@ -249,6 +236,18 @@ namespace DataBase_rgz
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadData();
+            for(int i = 0; i<dataGridView4.ColumnCount; i++)
+            {
+                if (dataGridView4.Rows[i].Visible == true)
+                {
+
+                }
+            }
         }
     }
 }
