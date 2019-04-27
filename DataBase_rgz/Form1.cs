@@ -10,21 +10,6 @@ using System.Windows.Forms;
 
 namespace DataBase_rgz
 {
-
-    public struct sproducts
-    {
-        public string spruduct;
-        public int ssum;
-    };
-
-    public struct sreciepts
-    {
-        public string scategory;
-        public string sdish;
-        public int snum;
-        public sproducts[] sproduct;
-    };
-
     public struct MENU
     {
         public string snack;
@@ -35,34 +20,11 @@ namespace DataBase_rgz
 
     public partial class Form1 : Form
     {
-        // sreciepts[] dish;
         MENU menu;
 
         public Form1()
         {
             InitializeComponent();
-            //System.IO.FileStream fs = new System.IO.FileStream(@"D:/study/Computational_Mathematics/", System.IO.FileMode.Open);
-            //System.Drawing.Image img = System.Drawing.Image.FromStream(fs);
-            //fs.Close();
-            //pictureBox1.Image = img;
-            //string[] rproducts = new string[10];
-            //int[] rsum = new int[10];
-
-            //n = (int)this.блюдоTableAdapter.Sum_dish();
-            ////int m = (int)this.продуктыTableAdapter.Sum_products();
-            ////dishs = new reciepts[n];
-            //string tmp;
-            //for (int i = 1; i < n; i++)
-            //{
-            //   / dishs[i].rdish = this.dataGridView1[2, i + 1].ToString();
-            //    dishs[i].rcategory = this.dataGridView1[3, i + 1].ToString();
-            //    //for (int j=0;j<m; j++)
-            //    //{
-            //    //    while (dataGridView2[])
-            //    //    dishs[i].rproducts[j] = 
-            //    //}
-            //}
-
         }
 
         private void LoadData()
@@ -83,7 +45,8 @@ namespace DataBase_rgz
                         num++;
                     } while ((str != dataGridView3.Rows[num].Cells[0].Value.ToString()) && (num < dataGridView3.RowCount - 1));
                     if ((str != dataGridView3.Rows[num].Cells[0].Value.ToString()) ||
-                        ((int)dataGridView5.Rows[j].Cells[1].Value >= (int)dataGridView3.Rows[num].Cells[1].Value)) {
+                        ((int)dataGridView5.Rows[j].Cells[1].Value >= (int)dataGridView3.Rows[num].Cells[1].Value))
+                    {
                         if (i != 0) dataGridView4.CurrentCell = dataGridView4.Rows[0].Cells[1];
                         else dataGridView4.CurrentCell = dataGridView4.Rows[1].Cells[1];
                         dataGridView4.Rows[i].Visible = false;
@@ -148,7 +111,7 @@ namespace DataBase_rgz
             }
         }
 
-       
+
         private void Form1_Load(object sender, EventArgs e)
         {
             this.продуктыTableAdapter.Fill(this.recipesDataSet.Продукты);
@@ -198,14 +161,14 @@ namespace DataBase_rgz
                     }
                     else
                         if (dataGridView4.Rows[i].Visible == true)
-                            vis = i;
+                        vis = i;
                 }
             }
             else
             {
+                pictureBox1.Visible = true;
                 dataGridView4.Visible = false;
                 dataGridView5.Visible = false;
-                pictureBox1.Visible = true;
             }
         }
 
@@ -238,16 +201,281 @@ namespace DataBase_rgz
             LoadData();
         }
 
+        private void data_label()
+        {
+
+        } 
+
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadData();
-            for(int i = 0; i<dataGridView4.ColumnCount; i++)
+            if (textBoxKolChel.Text.ToString() != "")
             {
-                if (dataGridView4.Rows[i].Visible == true)
+                int kol = (int)Math.Ceiling(Convert.ToDouble(textBoxKolChel.Text) / 5);
+                LoadData();
+                if (dataGridView4.SortOrder != SortOrder.Ascending)
+                    dataGridView4.Sort(dataGridView4.Columns[2], ListSortDirection.Descending);
+                int mz1 = 0, m11 = 0, m21 = 0, md1 = 0;
+                while ((dataGridView4.Rows[mz1].Cells[2].Value.ToString() != "Закуска") && (mz1 < dataGridView4.RowCount - 1))
+                    mz1++;
+                while ((dataGridView4.Rows[m11].Cells[2].Value.ToString() != "Первое") && (m11 < dataGridView4.RowCount - 1))
+                    m11++;
+                while ((dataGridView4.Rows[m21].Cells[2].Value.ToString() != "Второе") && (m21 < dataGridView4.RowCount - 1))
+                    m21++;
+                while ((dataGridView4.Rows[md1].Cells[2].Value.ToString() != "Десерт") && (md1 < dataGridView4.RowCount - 1))
+                    md1++;
+                int mz2 = mz1, m12 = m11, m22 = m21, md2 = md1;
+                while ((dataGridView4.Rows[mz2].Cells[2].Value.ToString() == "Закуска") && (mz2 < dataGridView4.RowCount - 1))
+                    mz2++;
+                while ((dataGridView4.Rows[m12].Cells[2].Value.ToString() == "Первое") && (m12 < dataGridView4.RowCount - 1))
+                    m12++;
+                while ((dataGridView4.Rows[m22].Cells[2].Value.ToString() == "Второе") && (m22 < dataGridView4.RowCount - 1))
+                    m22++;
+                while ((dataGridView4.Rows[md2].Cells[2].Value.ToString() == "Десерт") && (md2 < dataGridView4.RowCount - 1))
+                    md2++;
+                if (dataGridView4.Rows[mz2].Cells[2].Value.ToString() == "Закуска") mz2++;
+                if (dataGridView4.Rows[m12].Cells[2].Value.ToString() == "Первое") m12++;
+                if (dataGridView4.Rows[m22].Cells[2].Value.ToString() == "Второе") m22++;
+                if (dataGridView4.Rows[md2].Cells[2].Value.ToString() == "Десерт") md2++;
+                bool flag;
+                bool flags = false;
+                int i = mz1;
+                while ((i <= mz2) && (flags == false))
                 {
+                    while ((dataGridView4.Rows[i].Visible != true) && (i <= mz2))
+                        i++;
+                    flag = false;
+                    while ((flag == false) && (i <= mz2))
+                    {
+                        dataGridView4.CurrentCell = dataGridView4.Rows[i].Cells[1];
+                        flag = true;
+                        int r = 0;
+                        while ((r < dataGridView5.RowCount) && (flag == true))
+                        {
+                            int num = -1;
+                            do
+                            {
+                                num++;
+                            } while ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                    && (num < dataGridView3.RowCount - 1));
+                            if ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) ||
+                                ((int)dataGridView5.Rows[r].Cells[1].Value * kol >= (int)dataGridView3.Rows[num].Cells[1].Value))
+                            {
+                                flag = false;
+                            }
+                            r++;
+                        }
+                        i++;
+                    }
+                    if (flag == true)
+                    {
+                        for (int w = 0; w < dataGridView5.RowCount; w++)
+                        {
+                            int num = -1;
+                            do
+                            {
+                                num++;
+                            } while ((dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                    && (num < dataGridView3.RowCount - 1));
+                            if (dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                            {
+                                dataGridView3.Rows[num].Cells[1].Value = ((int)dataGridView3.Rows[num].Cells[1].Value - kol * (int)dataGridView5.Rows[w].Cells[1].Value).ToString();
+                            }
+                        }
+                        menu.snack = dataGridView4.Rows[i].Cells[1].Value.ToString();
+                        int j = m11;
+                        while ((j <= m12) && (flags == false))
+                        {
+                            while ((dataGridView4.Rows[j].Visible == false) && (j <= m12))
+                                j++;
+                            while ((flag == false) && (j <= m12))
+                            {
+                                dataGridView4.CurrentCell = dataGridView4.Rows[j].Cells[1];
+                                flag = true;
+                                int r = 0;
+                                while ((r < dataGridView5.RowCount) && (flag == true))
+                                {
+                                    int num = -1;
+                                    do
+                                    {
+                                        num++;
+                                    } while ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) &&
+                                            (num < dataGridView3.RowCount - 1));
+                                    if ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) ||
+                                        ((int)dataGridView5.Rows[r].Cells[1].Value * kol >= (int)dataGridView3.Rows[num].Cells[1].Value))
+                                    {
+                                        flag = false;
+                                    }
+                                    r++;
+                                }
+                                j++;
+                            }
+                            if (flag == true)
+                            {
+                                for (int w = 0; w < dataGridView5.RowCount; w++)
+                                {
+                                    int num = -1;
+                                    do
+                                    {
+                                        num++;
+                                    } while ((dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                            && (num < dataGridView3.RowCount - 1));
+                                    if (dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                    {
+                                        dataGridView3.Rows[num].Cells[1].Value = ((int)dataGridView3.Rows[num].Cells[1].Value - kol * (int)dataGridView5.Rows[w].Cells[1].Value).ToString();
+                                    }
+                                }
+                                menu.one_dish = dataGridView4.Rows[j].Cells[1].Value.ToString();
+                                int k = m21;
+                                while ((k <= m22) && (flags == false))
+                                {
+                                    while ((dataGridView4.Rows[k].Visible == false) && (k <= m22))
+                                        k++;
+                                    while ((flag == false) && (k <= m22))
+                                    {
+                                        dataGridView4.CurrentCell = dataGridView4.Rows[k].Cells[1];
+                                        flag = true;
+                                        int r = 0;
+                                        while ((r < dataGridView5.RowCount) && (flag == true))
+                                        {
+                                            int num = -1;
+                                            do
+                                            {
+                                                num++;
+                                            } while ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) &&
+                                                    (num < dataGridView3.RowCount - 1));
+                                            if ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) ||
+                                                ((int)dataGridView5.Rows[r].Cells[1].Value * kol >= (int)dataGridView3.Rows[num].Cells[1].Value))
+                                            {
+                                                flag = false;
+                                            }
+                                            r++;
+                                        }
+                                        k++;
+                                    }
+                                    if (flag == true)
+                                    {
+                                        for (int w = 0; w < dataGridView5.RowCount; w++)
+                                        {
+                                            int num = -1;
+                                            do
+                                            {
+                                                num++;
+                                            } while ((dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                                    && (num < dataGridView3.RowCount - 1));
+                                            if (dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                            {
+                                                dataGridView3.Rows[num].Cells[1].Value = ((int)dataGridView3.Rows[num].Cells[1].Value - kol * (int)dataGridView5.Rows[w].Cells[1].Value).ToString();
+                                            }
+                                        }
+                                        menu.tho_dish = dataGridView4.Rows[k].Cells[1].Value.ToString();
+                                        int l = md1;
+                                        while ((l <= md2) && (flags == false))
+                                        {
+                                            while ((dataGridView4.Rows[l].Visible == false) && (l <= md2))
+                                                l++;
+                                            while ((flag == false) && (l <= md2))
+                                            {
+                                                dataGridView4.CurrentCell = dataGridView4.Rows[k].Cells[1];
+                                                flag = true;
+                                                int r = 0;
+                                                while ((r < dataGridView5.RowCount) && (flag == true))
+                                                {
+                                                    int num = -1;
+                                                    do
+                                                    {
+                                                        num++;
+                                                    } while ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) &&
+                                                            (num < dataGridView3.RowCount - 1));
+                                                    if ((dataGridView5.Rows[r].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString()) ||
+                                                        ((int)dataGridView5.Rows[r].Cells[1].Value * kol >= (int)dataGridView3.Rows[num].Cells[1].Value))
+                                                    {
+                                                        flag = false;
+                                                    }
+                                                    r++;
+                                                }
+                                                l++;
+                                            }
+                                            if (flag == true)
+                                            {
+                                                menu.dessert = dataGridView4.Rows[l].Cells[1].Value.ToString();
+                                                flags = true;
+                                            }
+                                        }
+                                    }
+                                    if (flag == false)
+                                    {
+                                        dataGridView4.CurrentCell = dataGridView4.Rows[k].Cells[1];
+                                        for (int w = 0; w < dataGridView5.RowCount; w++)
+                                        {
+                                            int num = -1;
+                                            do
+                                            {
+                                                num++;
+                                            } while ((dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                                    && (num < dataGridView3.RowCount - 1));
+                                            if (dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                            {
+                                                dataGridView3.Rows[num].Cells[1].Value = ((int)dataGridView3.Rows[num].Cells[1].Value + kol * (int)dataGridView5.Rows[w].Cells[1].Value).ToString();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (flag == false)
+                            {
+                                dataGridView4.CurrentCell = dataGridView4.Rows[j].Cells[1];
+                                for (int w = 0; w < dataGridView5.RowCount; w++)
+                                {
+                                    int num = -1;
+                                    do
+                                    {
+                                        num++;
+                                    } while ((dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                            && (num < dataGridView3.RowCount - 1));
+                                    if (dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                    {
+                                        dataGridView3.Rows[num].Cells[1].Value = ((int)dataGridView3.Rows[num].Cells[1].Value + kol * (int)dataGridView5.Rows[w].Cells[1].Value).ToString();
+                                    }
+                                }
+                            }
 
+                        }
+                        if (flag == false)
+                        {
+                            dataGridView4.CurrentCell = dataGridView4.Rows[i].Cells[1];
+                            for (int w = 0; w < dataGridView5.RowCount; w++)
+                            {
+                                int num = -1;
+                                do
+                                {
+                                    num++;
+                                } while ((dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                        && (num < dataGridView3.RowCount - 1));
+                                if (dataGridView5.Rows[w].Cells[0].Value.ToString() != dataGridView3.Rows[num].Cells[0].Value.ToString())
+                                {
+                                    dataGridView3.Rows[num].Cells[1].Value = ((int)dataGridView3.Rows[num].Cells[1].Value + kol * (int)dataGridView5.Rows[w].Cells[1].Value).ToString();
+                                }
+                            }
+                        }
+
+                    }
+                }
+                if (flags == true)
+                {
+                    label10.Text = menu.snack;
+                    label11.Text = menu.one_dish;
+                    label12.Text = menu.tho_dish;
+                    label13.Text = menu.dessert;
+                }
+                else
+                {
+                    label10.Text = "?";
+                    label11.Text = "?";
+                    label12.Text = "?";
+                    label13.Text = "?";
                 }
             }
         }
+       
     }
 }
