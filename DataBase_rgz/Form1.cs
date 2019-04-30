@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Core;
+using Microsoft.Office.Interop.Word;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace DataBase_rgz
 {
@@ -20,11 +23,16 @@ namespace DataBase_rgz
 
     public partial class Form1 : Form
     {
+        Word._Application oWord = new Word.Application();
+
         MENU menu;
+        int rt = -1;
 
         public Form1()
         {
             InitializeComponent();
+            LoadData();
+           
         }
 
         private void LoadData()
@@ -208,6 +216,7 @@ namespace DataBase_rgz
 
         private void button1_Click(object sender, EventArgs e)
         {
+            rt++;
             if (textBoxKolChel.Text.ToString() != "")
             {
                 int kol = (int)Math.Ceiling(Convert.ToDouble(textBoxKolChel.Text) / 5);
@@ -460,6 +469,7 @@ namespace DataBase_rgz
 
                     }
                 }
+                if (rt == 0) button1_Click(sender,  e);
                 if (flags == true)
                 {
                     label10.Text = menu.snack;
@@ -475,7 +485,16 @@ namespace DataBase_rgz
                     label13.Text = "?";
                 }
             }
+            if (textBox3.Text.ToString() != "")
+                groupBox1.Text = "Меню обеда на " + textBox3.Text.ToString();
+            else
+                groupBox1.Text = "Меню обеда";
         }
-       
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //создается документ word, лучше pdf, или любой другой. Но либо чтоб его можно было открыть, либо подать на печать.
+        }
+
     }
 }
