@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Word;
 using Word = Microsoft.Office.Interop.Word;
+using System.Reflection;
+
 
 namespace DataBase_rgz
 {
@@ -31,6 +33,10 @@ namespace DataBase_rgz
         public Form1()
         {
             InitializeComponent();
+            menu.snack = "?";
+            menu.dessert = "?";
+            menu.one_dish = "?";
+            menu.tho_dish = "?";
             LoadData();
            
         }
@@ -491,9 +497,76 @@ namespace DataBase_rgz
                 groupBox1.Text = "Меню обеда";
         }
 
+        private Word._Document GetDoc(string path)
+        {
+            Word._Document oDoc = oWord.Documents.Add(path);
+            SetTemplate(oDoc);
+            return oDoc;
+        }
+
+        private void SetTemplate(Word._Document oDoc)
+        {
+            oDoc.Bookmarks["date"].Range.Text = textBox3.Text;
+            oDoc.Bookmarks["snack"].Range.Text = menu.snack;
+            oDoc.Bookmarks["one_dish"].Range.Text = menu.one_dish;
+            oDoc.Bookmarks["tho_dish"].Range.Text = menu.tho_dish;
+            oDoc.Bookmarks["dessert"].Range.Text = menu.dessert;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            //создается документ word, лучше pdf, или любой другой. Но либо чтоб его можно было открыть, либо подать на печать.
+            Word._Document oDoc = GetDoc(Environment.CurrentDirectory + "\\menu.dotx"); 
+            oDoc.SaveAs(FileName: Environment.CurrentDirectory + "\\Menu.docx");
+            oDoc.Close();
+            //var app = new Word.Application();
+            //app.Visible = true;
+            //var doc = app.Documents.Add();
+            //var r = doc.Range();
+            //r.Text = "Hello Word!";
+
+            //Word.Document doc = null;
+            //try
+            //{ 
+            /*
+            // Создаём объект приложения
+            Word.Application app = new Word.Application();
+            // Путь до шаблона документа
+            string source = @"D:\\study\\Visual_programming\\DataBase_rgz\\DataBase_rgz\\menu.docx";
+            
+            Microsoft.Office.Interop.Word.Application doc = 
+            // Открываем
+            doc = app.Documents.Open(source);
+            doc.Activate();
+            /*
+            //// Добавляем информацию
+            //// wBookmarks содержит все закладки
+            Word.Bookmarks wBookmarks = doc.Bookmarks;
+            Word.Range wRange;
+            int i = 0;
+            string[] data = new string[4] { textBox3.Text.ToString(), menu.snack, menu.one_dish, menu.dessert };
+
+            //foreach (Word.Bookmark mark in wBookmarks)
+            //{*/
+
+            //    wRange = mark.Range;
+            //    wRange.Text = data[i];
+            //    i++;
+            //}
+
+            //// Закрываем документ
+            //    doc.Close();
+            //    doc = null;
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Если произошла ошибка, то
+            //    // закрываем документ и выводим информацию
+            //    doc.Close();
+            //    doc = null;
+            //    Console.WriteLine("Во время выполнения произошла ошибка!");
+            //    Console.ReadLine();
+            //}
+
         }
 
     }
