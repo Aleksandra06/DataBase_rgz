@@ -11,7 +11,7 @@ using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Word;
 using Word = Microsoft.Office.Interop.Word;
 using System.Reflection;
-
+using System.Drawing.Printing;
 
 namespace DataBase_rgz
 {
@@ -515,59 +515,22 @@ namespace DataBase_rgz
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Word._Document oDoc = GetDoc(Environment.CurrentDirectory + "\\menu.dotx"); 
-            oDoc.SaveAs(FileName: Environment.CurrentDirectory + "\\Menu.docx");
-            oDoc.Close();
-            //var app = new Word.Application();
-            //app.Visible = true;
-            //var doc = app.Documents.Add();
-            //var r = doc.Range();
-            //r.Text = "Hello Word!";
-
-            //Word.Document doc = null;
-            //try
-            //{ 
-            /*
-            // Создаём объект приложения
-            Word.Application app = new Word.Application();
-            // Путь до шаблона документа
-            string source = @"D:\\study\\Visual_programming\\DataBase_rgz\\DataBase_rgz\\menu.docx";
-            
-            Microsoft.Office.Interop.Word.Application doc = 
-            // Открываем
-            doc = app.Documents.Open(source);
-            doc.Activate();
-            /*
-            //// Добавляем информацию
-            //// wBookmarks содержит все закладки
-            Word.Bookmarks wBookmarks = doc.Bookmarks;
-            Word.Range wRange;
-            int i = 0;
-            string[] data = new string[4] { textBox3.Text.ToString(), menu.snack, menu.one_dish, menu.dessert };
-
-            //foreach (Word.Bookmark mark in wBookmarks)
-            //{*/
-
-            //    wRange = mark.Range;
-            //    wRange.Text = data[i];
-            //    i++;
-            //}
-
-            //// Закрываем документ
-            //    doc.Close();
-            //    doc = null;
-            //}
-            //catch (Exception ex)
-            //{
-            //    // Если произошла ошибка, то
-            //    // закрываем документ и выводим информацию
-            //    doc.Close();
-            //    doc = null;
-            //    Console.WriteLine("Во время выполнения произошла ошибка!");
-            //    Console.ReadLine();
-            //}
-
+            if (menu.snack != "?" && textBox3.Text != "")
+            {
+                Word._Document oDoc = GetDoc(Environment.CurrentDirectory + "\\menu.dotx");
+                oDoc.SaveAs(FileName: Environment.CurrentDirectory + "\\Menu.docx");
+                oDoc.Close();
+                PrintDocument D = new PrintDocument();
+                D.DocumentName = Environment.CurrentDirectory + "\\Menu.docx";
+                D.Print();
+            }
+            else
+            {
+                if (textBox3.Text == "")
+                    MessageBox.Show("Введите дату", "Ошибка");
+                else
+                    MessageBox.Show("Невозможно составить меню из данных продуктов или меню не было составлено", "Ошибка");
+            }
         }
-
     }
 }

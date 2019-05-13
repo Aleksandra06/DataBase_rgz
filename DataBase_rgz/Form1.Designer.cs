@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -88,8 +90,6 @@
             this.продукты_естьTableAdapter = new DataBase_rgz.productsDataSetTableAdapters.Продукты_естьTableAdapter();
             this.блюдоTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.БлюдоTableAdapter();
             this.продуктыTableAdapter = new DataBase_rgz.recipesDataSetTableAdapters.ПродуктыTableAdapter();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -143,6 +143,23 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Меню";
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(353, 18);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 27);
+            this.textBox3.TabIndex = 24;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(287, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(47, 21);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "Дата";
+            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::DataBase_rgz.Properties.Resources._2;
@@ -165,9 +182,9 @@
             // 
             this.button2.Location = new System.Drawing.Point(190, 69);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(144, 35);
+            this.button2.Size = new System.Drawing.Size(113, 35);
             this.button2.TabIndex = 20;
-            this.button2.Text = "Создать документ";
+            this.button2.Text = "Печеть меню";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -713,23 +730,6 @@
             // продуктыTableAdapter
             // 
             this.продуктыTableAdapter.ClearBeforeFill = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(287, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(47, 21);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "Дата";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(353, 18);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 27);
-            this.textBox3.TabIndex = 24;
             // 
             // Form1
             // 
